@@ -30,7 +30,18 @@ void runBench(int n, float *x, float *y, float *z, int dimX, int dimY, int dimZ)
         printf("Calc complete\n");
         clock_t end = clock();
         double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-        printf("Time spent for %d %d %d: %f. Resetting z...\n", dimX, dimY, dimZ, time_spent);
+        printf("Time spent for %d %d %d: %f\n", dimX, dimY, dimZ, time_spent);
+
+        printf("Verifying...\n");
+        for(int i = 0; i < n; i++){
+            if(z[i] != x[i] + y[i]){
+                 printf("ERROR: Expected %d, got %d\n", x[i]+y[i], z[i]);
+                 return -1;
+            }
+        }
+        printf("Verified\n");
+
+        printf("Resetting z...\n");
         for(int i = 0; i < n; i++){
             z[i] = 0;
         }
@@ -56,12 +67,6 @@ int main()
 
     runBench(n, x, y, z, 8, 8, 8);
 
-    for(int i = 0; i < n; i++){
-    if(z[i] != x[i] + y[i]){
-         printf("ERROR: Expected %d, got %d\n", x[i]+y[i], z[i]);
-         return -1;
-    }
-    }
     printf("\n");
 
     cudaFree(x);
