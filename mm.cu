@@ -32,7 +32,7 @@ void printm(float *a, int n){
 printf("-----\n");
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
-            printf("%.1f ", a[i*n + j]);
+            printf("%.0f ", a[i*n + j]);
         }
         printf("\n");
     }
