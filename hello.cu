@@ -6,14 +6,11 @@
 __global__
 void add(int n, float *x, float *y, float *z)
 {
-    int index = threadIdx.x; //current thread index
-    int stride = blockDim.x; //num of threads in block
-
-    for(int i = index; i < n; i += stride){
-        if(threadIdx.x == 0 && blockIdx.x == 0){
-            printf("0 0 is processing %d\n", i);
-        }
-        z[i] = x[i] + y[i];
+    int index = blockIdx.x * blockDim.x + threadIdx.x;
+    int stride = blockDim.x * gridDim.x;
+    printf("Stride: %d\n", stride);
+    for (int i = index; i < n; i += stride){
+        y[i] = x[i] + y[i];
     }
 }
 
