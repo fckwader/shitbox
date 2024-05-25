@@ -57,13 +57,13 @@ int main()
     cudaMallocManaged(&z, n*sizeof(float));
 
     //init
-    printf("Init...\n");
+    printf("Init... ");
     for(int i = 0; i < n; i++){
         x[i] = i % 8;
         y[i] = i % 25;
         z[i] = 0;
     }
-    printf("Init complete\n");
+    printf("Init complete.\n");
 
     runBench(n, x, y, z, 512, 1, 1);
     runBench(n, x, y, z, 1, 512, 1);
