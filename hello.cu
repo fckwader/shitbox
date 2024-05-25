@@ -52,7 +52,7 @@ void runBench(int n, float *x, float *y, float *z, int bx, int by, int bz, int d
 
 int main()
 {
-    int n = 1000000000;
+    int n = 1000000;
     float *x, *y, *z;
     cudaMallocManaged(&x, n*sizeof(float));
     cudaMallocManaged(&y, n*sizeof(float));
@@ -69,7 +69,7 @@ int main()
 
     printf("| BX | BY | BZ | TX | TY | TZ | t |\n");
 
-    for(int i = 0; i < 32; i*=2){
+    for(int i = 1; i < 32; i*=2){
         printf("%d ", i);
     }
 
