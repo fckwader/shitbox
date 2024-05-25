@@ -1,1 +1,6 @@
-this is a texst
+#include <stdio.h>
+
+int main()
+{
+    printf("FAWKJKK");
+}
