@@ -65,7 +65,6 @@ int main(){
         mm<<<1, vec>>>(a, b, c, n);
         cudaDeviceSynchronize();
     clock_t end = clock();
-    printm(a, n);
     double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
     printf("MM parallel took %.1f seconds", time_spent);
 
@@ -74,7 +73,6 @@ int main(){
         mm_single(a, b, c, n);
         cudaDeviceSynchronize();
     end = clock();
-    printm(a, n);
     time_spent = (double)(end - start) / CLOCKS_PER_SEC;
     printf("MM single took %.1f seconds", time_spent);
 
