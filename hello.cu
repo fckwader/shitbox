@@ -65,9 +65,16 @@ int main()
     }
     printf("Init complete\n");
 
+    runBench(n, x, y, z, 512, 1, 1);
+    runBench(n, x, y, z, 1, 512, 1);
+    runBench(n, x, y, z, 1, 1, 512);
     runBench(n, x, y, z, 8, 8, 8);
-    runBench(n, x, y, z, 16, 4, 1);
-
+    runBench(n, x, y, z, 16, 4, 8);
+    runBench(n, x, y, z, 4, 16, 8);
+    runBench(n, x, y, z, 8, 16, 4);
+    runBench(n, x, y, z, 8, 4, 16);
+    runBench(n, x, y, z, 4, 8, 16);
+    runBench(n, x, y, z, 16, 8, 4);
     printf("\n");
 
     cudaFree(x);
