@@ -23,7 +23,7 @@ int main()
 {
     int n = 32768;
     int blockSize = 64;
-    dim3 sizevec(blockSize);
+    dim3 sizevec(blockSize, blockSize, blockSize);
     float *x, *y, *z;
     cudaMallocManaged(&x, n*sizeof(float));
     cudaMallocManaged(&y, n*sizeof(float));
