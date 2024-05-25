@@ -27,7 +27,7 @@ void mm(float *a, float *b, float *c, int n){
 
 int main(){
     int n = 256;
-    dim3 vec(16, 16, 1);
+    dim3 vec(8, 8, 1);
     float a[n*n], b[n*n], c[n*n];
 
     init(a, b, c, n);
