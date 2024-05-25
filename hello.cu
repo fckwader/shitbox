@@ -7,6 +7,7 @@
 __global__
 void add(int n, float *x, float *y, float *z)
 {
+    printf("X %d, Y %d, Z %d\n", blockDim.x, blockDim.y, blockDim.z);
     int index = blockIdx.x * blockDim.x + threadIdx.x;
     int stride = blockDim.x * gridDim.x;
 
@@ -21,6 +22,8 @@ void add(int n, float *x, float *y, float *z)
 int main()
 {
     int n = 32768;
+    int blockSize = 64;
+    dim3 sizevec(blockSize, blockSize, blockSize);
     float *x, *y, *z;
     cudaMallocManaged(&x, n*sizeof(float));
     cudaMallocManaged(&y, n*sizeof(float));
@@ -35,11 +38,10 @@ int main()
     }
     printf("Init complete\n");
 
-    int blockSize = 256;
-    int numBlocks = (n + blockSize - 1) / blockSize;
+
     printf("Calc...\n");
     clock_t begin = clock();
-    add<<<8, 256>>>(n, x, y, z);
+    add<<<8, sizevec>>>(n, x, y, z);
     cudaDeviceSynchronize();
     printf("Calc complete\n");
     clock_t end = clock();
