@@ -21,7 +21,7 @@ __global__ void globalMM(double *__restrict__ a,
             for (int i = 0; i < N; i++) {
                 sum += a[row * N + i] * b[i * N + col];
             }
-            printf("Row: %d, Col: %d", row, col);
+            printf("Row: %d, Col: %d\n", row, col);
             c[row * N + col] = sum;
         }
 }
