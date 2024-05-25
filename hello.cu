@@ -23,34 +23,34 @@ void add(int n, float *x, float *y, float *z)
 
 void runBench(int n, float *x, float *y, float *z, int dimX, int dimY, int dimZ){
         dim3 sizevec(dimX, dimY, dimZ);
-        printf("Calc...\n");
+        printf("Calc... ");
         clock_t begin = clock();
         add<<<1, sizevec>>>(n, x, y, z);
         cudaDeviceSynchronize();
-        printf("Calc complete\n");
+        printf("Calc complete.\n");
         clock_t end = clock();
         double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
         printf("Time spent for %d %d %d: %f\n", dimX, dimY, dimZ, time_spent);
 
-        printf("Verifying...\n");
+        printf("Verifying... ");
         for(int i = 0; i < n; i++){
             if(z[i] != x[i] + y[i]){
                  printf("ERROR: Expected %d, got %d\n", x[i]+y[i], z[i]);
                  return;
             }
         }
-        printf("Verified\n");
+        printf("Verified. ");
 
-        printf("Resetting z...\n");
+        printf("Resetting z... ");
         for(int i = 0; i < n; i++){
             z[i] = 0;
         }
-        printf("z reset\n");
+        printf("z reset.\n");
 }
 
 int main()
 {
-    int n = 32768;
+    int n = 10000000;
     float *x, *y, *z;
     cudaMallocManaged(&x, n*sizeof(float));
     cudaMallocManaged(&y, n*sizeof(float));
