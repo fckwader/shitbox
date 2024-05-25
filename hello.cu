@@ -10,7 +10,7 @@ void add(int n, float *x, float *y, float *z)
     int stride = blockDim.x * gridDim.x;
     printf("Stride: %d\n", stride);
     for (int i = index; i < n; i += stride){
-        y[i] = x[i] + y[i];
+        z[i] = x[i] + y[i];
     }
 }
 
