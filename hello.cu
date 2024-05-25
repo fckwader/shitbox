@@ -28,6 +28,8 @@ int main()
 
     add<<<1, 1>>>(n, x, y, z);
 
+    cudaDeviceSynchronize();
+
     for(int i = 0; i < n; i++){
         if(z[i] != x[i] + y[i]){
             printf("ERROR: Expected %d, got %d", x[i]+y[i], z[i]);
