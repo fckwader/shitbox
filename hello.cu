@@ -22,6 +22,7 @@ int main()
     for(int i = 0; i < n; i++){
         x[i] = (i * 2) % 13;
         y[i] = (i * 3) % 25;
+        z[i] = 0;
     }
 
     add(n, x, y);
