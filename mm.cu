@@ -12,8 +12,10 @@ void init(float *a, float *b, float *c, int n){
 }
 
 
-
+__global__
 void mm(float *a, float *b, float *c, int n){
+    printf("X %d Y %d Z %d", threadIdx.x, threadIdx.y, threadIdx.z);
+    return;
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
             for(int k = 0; k < n; k++){
@@ -24,11 +26,12 @@ void mm(float *a, float *b, float *c, int n){
 }
 
 int main(){
-    int n = 32;
+    int n = 256;
+    dim3 vec(16, 16, 1);
     float a[n*n], b[n*n], c[n*n];
 
     init(a, b, c, n);
-    mm(a, b, c, n);
+    mm<<<1, vec>>>(a, b, c, n);
     return 0;
 
 }
