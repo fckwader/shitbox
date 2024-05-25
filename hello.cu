@@ -15,7 +15,7 @@ void add(int n, float *x, float *y, float *z)
 
 int main()
 {
-    int n = 100;
+    int n = 8;
     float *x, *y, *z;
     cudaMallocManaged(&x, n*sizeof(float));
     cudaMallocManaged(&y, n*sizeof(float));
