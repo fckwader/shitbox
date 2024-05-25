@@ -8,6 +8,9 @@ void add(int n, float *x, float *y, float *z)
 {
     for(int i = 0; i < n; i++){
         z[i] = x[i] + y[i];
+        if(i%1000 == 0){
+            printf(".");
+        }
     }
 }
 
