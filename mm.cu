@@ -14,7 +14,7 @@ void init(float *a, float *b, float *c, int n){
 
 __global__
 void mm(float *a, float *b, float *c, int n){
-    printf("X %d Y %d Z %d", threadIdx.x, threadIdx.y, threadIdx.z);
+    printf("X %d Y %d Z %d\n", threadIdx.x, threadIdx.y, threadIdx.z);
     return;
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
