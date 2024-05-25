@@ -10,6 +10,7 @@ void add(int n, float *x, float *y, float *z)
     int stride = blockDim.x; //num of threads in block
     if(index == 0){
         printf("X %d Y %d Z %d\n", blockDim.x, blockDim.y, blockDim.z);
+        printf("Grid count: %d\n", gridDim.x);
     }
 
     for(int i = index; i < n; i += stride){
