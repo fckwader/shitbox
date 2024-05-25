@@ -9,7 +9,7 @@ void add(int n, float *x, float *y, float *z)
 {
     int index = blockIdx.x * blockDim.x + threadIdx.x;
     if(threadIdx.x == 0){
-        printf("Block ID: %d", blockIdx.x);
+        printf("Block ID: %d\n", blockIdx.x);
     }
     int stride = blockDim.x * gridDim.x;
     for (int i = index; i < n; i += stride){
@@ -19,7 +19,7 @@ void add(int n, float *x, float *y, float *z)
 
 int main()
 {
-    int n = 1024;
+    int n = 32768;
     float *x, *y, *z;
     cudaMallocManaged(&x, n*sizeof(float));
     cudaMallocManaged(&y, n*sizeof(float));
