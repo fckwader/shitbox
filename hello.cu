@@ -10,12 +10,8 @@ void add(int n, float *x, float *y, float *z)
     int index = blockIdx.x * blockDim.x + threadIdx.x;
     int stride = blockDim.x * gridDim.x;
 
-    if(index == 0){
-        printf("Hi vro");
-    }
-
     for (int i = index; i < n; i += stride){
-
+        printf("0 0 is running i=%d\n", i);
         z[i] = x[i] + y[i];
     }
 }
