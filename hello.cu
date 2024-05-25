@@ -71,6 +71,8 @@ int main()
 
 
     runBench(n, x, y, z, 64, 1, 1, 8, 8, 8);
+    runBench(n, x, y, z, 1, 64, 1, 8, 8, 8);
+    runBench(n, x, y, z, 1, 1, 64, 8, 8, 8);
     runBench(n, x, y, z, 32, 2, 1, 8, 8, 8);
     runBench(n, x, y, z, 32, 1, 2, 8, 8, 8);
     runBench(n, x, y, z, 16, 4, 1, 8, 8, 8);
