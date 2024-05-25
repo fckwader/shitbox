@@ -94,23 +94,20 @@ int main(int argc, char *argv[])
 
     /*
      * Basic MM Kernel Call & Time Measurements
-
-
-         dim3 dimBlockMM(N, N);
-         auto t0 = std::chrono::high_resolution_clock::now();
-         CUDA_CHECK_ERR_LAST(globalMM<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, N, REP));
-         CUDA_CHECK_ERR(cudaDeviceSynchronize());
-         auto t1 = std::chrono::high_resolution_clock::now();
-
-         // Calculate Flops/sec,
-         double dur = std::chrono::duration_cast<dsec>(t1 - t0).count();
-         std::cout << "MM GFlops/s (N=" << N << "): " << gf / dur << std::endl;
-
-         // Copy the result back to CPU & correctness check
-         cudaMemcpy(c, d_c, sizeof(double) * N * N, cudaMemcpyDeviceToHost);
-         Checksum(N, c, checksum);
      */
+    dim3 dimBlockMM(N, N);
+    auto t0 = std::chrono::high_resolution_clock::now();
+    CUDA_CHECK_ERR_LAST(globalMM<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, N, REP));
+    CUDA_CHECK_ERR(cudaDeviceSynchronize());
+    auto t1 = std::chrono::high_resolution_clock::now();
 
+    // Calculate Flops/sec,
+    double dur = std::chrono::duration_cast<dsec>(t1 - t0).count();
+    std::cout << "MM GFlops/s (N=" << N << "): " << gf / dur << std::endl;
+
+    // Copy the result back to CPU & correctness check
+    cudaMemcpy(c, d_c, sizeof(double) * N * N, cudaMemcpyDeviceToHost);
+    Checksum(N, c, checksum);
 
     // Reset result_arrays c and d_c
 #pragma omp parallel for schedule(static)
@@ -122,6 +119,7 @@ int main(int argc, char *argv[])
     /*
      *Basic Tiled MM with Shared Memory Kernel Call & Time Measurements
      */
+    /*
     t0 = std::chrono::high_resolution_clock::now();
     CUDA_CHECK_ERR_LAST(sharedTiledMM<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, N, REP));
     CUDA_CHECK_ERR(cudaDeviceSynchronize());
@@ -134,6 +132,7 @@ int main(int argc, char *argv[])
     // Copy the result back to CPU & correctness check
     cudaMemcpy(c, d_c, sizeof(double) * N * N, cudaMemcpyDeviceToHost);
     Checksum(N, c, checksum);
+    */
 
     free(a);
     free(b);
