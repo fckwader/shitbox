@@ -10,7 +10,7 @@ void init(float *a, float *b, float *c, int n){
             }else{
                 b[i*n + j] = 0;
             }
-            c[i*n + j] = (i*j + 1) % 13;
+            c[i*n + j] = (i* j + 1) % 7;
         }
     }
 }
