@@ -24,6 +24,7 @@ int main()
     //init
     printf("Init...\n");
     for(int i = 0; i < n; i++){
+        printf("i = %d\n", i);
         x[i] = i;
         y[i] = i;
         z[i] = 0;
