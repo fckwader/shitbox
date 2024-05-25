@@ -13,7 +13,7 @@ void add(int n, float *x, float *y, float *z)
 
 int main()
 {
-    int n = 1000000;
+    int n = 1000000000;
     float *x, *y, *z;
     cudaMallocManaged(&x, n*sizeof(float));
     cudaMallocManaged(&y, n*sizeof(float));
@@ -26,17 +26,13 @@ int main()
         z[i] = 0;
     }
 
-    add<<<1, 1>>>(n, x, y, z);
+    add<<<1, 256>>>(n, x, y, z);
 
     cudaDeviceSynchronize();
 
     for(int i = 0; i < n; i++){
         if(z[i] != x[i] + y[i]){
             printf("ERROR: Expected %d, got %d\n", x[i]+y[i], z[i]);
-        }else{
-            if(i%10 == 0){
-                printf(".");
-            }
         }
     }
     printf("\n");
