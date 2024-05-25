@@ -7,7 +7,7 @@
 __global__
 void add(int n, float *x, float *y, float *z)
 {
-    printf("hi");
+    printf("X %d, Y %d, Z %d\n", blockDim.x, blockDim.y, blockDim.z);
     int index = blockIdx.x * blockDim.x + threadIdx.x;
     int stride = blockDim.x * gridDim.x;
 
@@ -23,7 +23,7 @@ int main()
 {
     int n = 32768;
     int blockSize = 64;
-    dim3 sizevec(blockSize, blockSize, blockSize);
+    dim3 sizevec(blockSize);
     float *x, *y, *z;
     cudaMallocManaged(&x, n*sizeof(float));
     cudaMallocManaged(&y, n*sizeof(float));
