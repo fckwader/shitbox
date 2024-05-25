@@ -10,6 +10,7 @@ void add(int n, float *x, float *y, float *z)
 
     int index = blockIdx.x * blockDim.x * blockDim.y * blockDim.z + threadIdx.x;
     printf("Index %d\n", index);
+    printf("blockdim X %d, Y %d, Z %d\n", blockDim.x, blockDim.y, blockDim.z);
     int stride = blockDim.x * blockDim.y * blockDim.z * gridDim.x;
 
     for (int i = index; i < n; i += stride){
