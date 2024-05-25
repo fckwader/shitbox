@@ -9,7 +9,7 @@ void add(int n, float *x, float *y, float *z)
 {
 
 
-    int index = threadIdx.x + threadIdx.y * blockDim.y + threadIdx.z * blockDim.y * blockDim.z;
+    int index = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * blockDim.x * blockDim.y;
 
     int stride = blockDim.x * blockDim.y * blockDim.z * gridDim.x;
 
@@ -25,7 +25,7 @@ int main()
 {
     int n = 32768;
     int blockSize = 8;
-    dim3 sizevec(16, blockSize, blockSize);
+    dim3 sizevec(32, blockSize, blockSize);
     float *x, *y, *z;
     cudaMallocManaged(&x, n*sizeof(float));
     cudaMallocManaged(&y, n*sizeof(float));
