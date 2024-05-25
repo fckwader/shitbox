@@ -8,11 +8,14 @@ __global__
 void add(int n, float *x, float *y, float *z)
 {
     int index = blockIdx.x * blockDim.x + threadIdx.x;
-    if(blockIdx.x == 0){
-        printf("Thread ID: %d\n", threadIdx.x);
-    }
     int stride = blockDim.x * gridDim.x;
+
+    if(index == 0){
+        printf("Hi vro");
+    }
+
     for (int i = index; i < n; i += stride){
+
         z[i] = x[i] + y[i];
     }
 }
