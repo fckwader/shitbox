@@ -28,7 +28,7 @@ int main()
         x[i] = (float) i;
         y[i] = (float) i;
         z[i] = (float) 0;
-        printf("INIT X: %d, Y: %d, Z: %d\n", x[i], y[i], z[i]);
+        printf("INIT X: %f, Y: %f, Z: %f\n", x[i], y[i], z[i]);
     }
     printf("Init complete\n");
 
@@ -41,7 +41,7 @@ int main()
        // if(z[i] != x[i] + y[i]){
      //       printf("ERROR: Expected %d, got %d\n", x[i]+y[i], z[i]);
      //   }
-     printf("%d + %d = %d\n", x[i], y[i], z[i]);
+     printf("%f + %f = %f\n", x[i], y[i], z[i]);
     }
     printf("\n");
 
