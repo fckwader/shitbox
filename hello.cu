@@ -25,9 +25,9 @@ int main()
     printf("Init...\n");
     for(int i = 0; i < n; i++){
         printf("i = %d\n", i);
-        x[i] = i;
-        y[i] = i;
-        z[i] = 0;
+        x[i] = (float) i;
+        y[i] = (float) i;
+        z[i] = (float) 0;
         printf("INIT X: %d, Y: %d, Z: %d\n", x[i], y[i], z[i]);
     }
     printf("Init complete\n");
