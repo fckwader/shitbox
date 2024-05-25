@@ -27,6 +27,8 @@ void mm(float *a, float *b, float *c, int n){
         printf("Is ty = 0? %d\n", ty == 0);
         if(ty == 0){
             printf("TY IS 0");
+        }else{
+            printf("TY IS NOT 0");
         }
     }
 
