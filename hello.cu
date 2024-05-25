@@ -8,12 +8,11 @@ void add(int n, float *x, float *y, float *z)
 {
     int index = threadIdx.x; //current thread index
     int stride = blockDim.x; //num of threads in block
-    if(index == 0){
-        printf("X %d Y %d Z %d\n", blockDim.x, blockDim.y, blockDim.z);
-        printf("Grid count: %d\n", gridDim.x);
-    }
 
     for(int i = index; i < n; i += stride){
+        if(threadIdx.x == 0 && blockIdx.x == 0){
+            printf("0 0 is processing %d\n", i);
+        }
         z[i] = x[i] + y[i];
     }
 }
