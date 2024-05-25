@@ -66,7 +66,7 @@ int main(){
         cudaDeviceSynchronize();
     clock_t end = clock();
     double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
-    printf("MM parallel took %.1f seconds", time_spent);
+    printf("MM parallel took %.1f seconds\n", time_spent);
 
     init(a, b, c, n);
     start = clock();
@@ -74,7 +74,7 @@ int main(){
         cudaDeviceSynchronize();
     end = clock();
     time_spent = (double)(end - start) / CLOCKS_PER_SEC;
-    printf("MM single took %.1f seconds", time_spent);
+    printf("MM single took %.1f seconds\n", time_spent);
 
 
     return 0;
