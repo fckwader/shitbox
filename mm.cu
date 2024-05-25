@@ -23,7 +23,6 @@ void mm(float *a, float *b, float *c, int n){
 
 
     for(int j = ty; j < n; j+=blockDim.y){
-        printf("j: %d, n: %d\n", j, n);
         for(int k = 0; k < n; k++){
             a[tx * n + j] += b[tx * n + k] * c[k * n + j];
         }
@@ -44,7 +43,11 @@ printf("------\n");
 int main(){
     int n = 10;
     dim3 vec(8, 8, 1);
-    float a[n*n], b[n*n], c[n*n];
+    float *a, *b, *c;
+    cudaMallocManaged(&a, n*n*sizeof(float));
+    cudaMallocManaged(&b, n*n*sizeof(float));
+    cudaMallocManaged(&c, n*n*sizeof(float));
+
 
     init(a, b, c, n);
     printm(c, n);
