@@ -11,7 +11,9 @@ void add(int n, float *x, float *y, float *z)
     int stride = blockDim.x * gridDim.x;
 
     for (int i = index; i < n; i += stride){
-        printf("0 0 is running i=%d\n", i);
+        if(index == 0){
+            printf("0 0 is running i=%d\n", i);
+        }
         z[i] = x[i] + y[i];
     }
 }
