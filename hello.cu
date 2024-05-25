@@ -6,11 +6,11 @@
 __global__
 void add(int n, float *x, float *y, float *z)
 {
-
-    for(int i = 0; i < n; i++){
+    int index = threadIdx.x;
+    int stride = blockDim.x;
+    for(int i = index; i < n; i += stride){
         z[i] = x[i] + y[i];
     }
-
 }
 
 int main()
@@ -36,9 +36,10 @@ int main()
     printf("Calc complete\n");
 
     for(int i = 0; i < n; i++){
-        if(z[i] != x[i] + y[i]){
-            printf("ERROR: Expected %d, got %d\n", x[i]+y[i], z[i]);
-        }
+       // if(z[i] != x[i] + y[i]){
+     //       printf("ERROR: Expected %d, got %d\n", x[i]+y[i], z[i]);
+     //   }
+     printf("%d + %d = %d\n", x[i], y[i], z[i]);
     }
     printf("\n");
 
