@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 
 
 
@@ -15,7 +16,7 @@ void add(int n, float *x, float *y, float *z)
 
 int main()
 {
-    int n = 1000000;
+    int n = 100000000;
     float *x, *y, *z;
     cudaMallocManaged(&x, n*sizeof(float));
     cudaMallocManaged(&y, n*sizeof(float));
@@ -33,9 +34,13 @@ int main()
     int blockSize = 256;
     int numBlocks = (n + blockSize - 1) / blockSize;
     printf("Calc...\n");
+    clock_t begin = clock();
     add<<<256, 256>>>(n, x, y, z);
     cudaDeviceSynchronize();
     printf("Calc complete\n");
+    clock_t end = clock();
+    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    printf("Time spent: %f\n", time_spent);
 
     for(int i = 0; i < n; i++){
     if(z[i] != x[i] + y[i]){
