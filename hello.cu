@@ -34,8 +34,10 @@ int main()
     }
     printf("Init complete\n");
 
+    int blockSize = 256;
+    int numBlocks = (n + blockSize - 1) / blockSize;
     printf("Calc...\n");
-    add<<<1, 256>>>(n, x, y, z);
+    add<<<numBlocks, blockSize>>>(n, x, y, z);
     cudaDeviceSynchronize();
     printf("Calc complete\n");
 
