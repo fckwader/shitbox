@@ -54,7 +54,7 @@ printf("------\n");
 
 int main(){
     int n = 2048;
-    dim3 vec(4, 4, 1);
+    dim3 vec(16, 16, 1);
     float *a, *b, *c;
     cudaMallocManaged(&a, n*n*sizeof(float));
     cudaMallocManaged(&b, n*n*sizeof(float));
