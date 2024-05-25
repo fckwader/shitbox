@@ -21,6 +21,7 @@ __global__ void globalMM(double *__restrict__ a,
             for (int i = 0; i < N; i++) {
                 sum += a[row * N + i] * b[i * N + col];
             }
+            printf("Row: %d, Col: %d", row, col);
             c[row * N + col] = sum;
         }
 }
@@ -58,7 +59,6 @@ int main(int argc, char *argv[])
     int          REP       = 100;
     unsigned int grid_rows = (N + BLOCK_SIZE - 1) / BLOCK_SIZE;
     unsigned int grid_cols = (N + BLOCK_SIZE - 1) / BLOCK_SIZE;
-    printf("Grid: %d %d\n", grid_rows, grid_cols);
     dim3         dimGrid(grid_cols, grid_rows);
     dim3         dimBlock(BLOCK_SIZE, BLOCK_SIZE);
 
