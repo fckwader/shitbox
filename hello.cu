@@ -24,8 +24,8 @@ int main()
     //init
     printf("Init...\n");
     for(int i = 0; i < n; i++){
-        x[i] = i % 8;
-        y[i] = i % 8;
+        x[i] = i;
+        y[i] = i;
         z[i] = 0;
         printf("INIT X: %d, Y: %d, Z: %d\n", x[i], y[i], z[i]);
     }
