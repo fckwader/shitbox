@@ -8,6 +8,8 @@ __global__
 void add(int n, float *x, float *y, float *z)
 {
 
+    printf("GridDim: %d %d %d", gridDim.x, gridDim.y, gridDim.z);
+
     int index = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * blockDim.x * blockDim.y;
 
     int stride = blockDim.x * blockDim.y * blockDim.z * gridDim.x;
