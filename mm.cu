@@ -21,6 +21,8 @@ void mm(float *a, float *b, float *c, int n){
     int tx = threadIdx.x;
     int ty = threadIdx.y;
 
+    printf("%d %d\n", tx, ty);
+
     if(tx == 0 && ty == 0){
         printf("0 0. facts");
     }
