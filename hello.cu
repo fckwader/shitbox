@@ -24,11 +24,9 @@ int main()
     //init
     printf("Init...\n");
     for(int i = 0; i < n; i++){
-        printf("i = %d\n", i);
-        x[i] = (float) i;
-        y[i] = (float) i;
+        x[i] = (float) (i * 2.5) % 13;
+        y[i] = (float) (i * 1.9) % 25;
         z[i] = (float) 0;
-        printf("INIT X: %f, Y: %f, Z: %f\n", x[i], y[i], z[i]);
     }
     printf("Init complete\n");
 
