@@ -23,8 +23,9 @@ void mm(float *a, float *b, float *c, int n){
 
     for(int j = ty; j < n; j+=blockDim.y){
         for(int k = 0; k < n; k++){
-        printf("SEX\n");
-            printf("%.1f\n", b[tx * n + k] * c[k * n + j]);
+            if(tx == 0 && ty == 0){
+               printf("j %d\n", j);
+            }
             a[tx * n + j] += b[tx * n + k] * c[k * n + j];
         }
     }
