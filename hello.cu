@@ -71,10 +71,15 @@ int main()
 
 
     runBench(n, x, y, z, 64, 1, 1, 8, 8, 8);
-    runBench(n, x, y, z, 32, 2, 1, 8, 8, 8);
-    runBench(n, x, y, z, 16, 2, 2, 8, 8, 8);
-    runBench(n, x, y, z, 8, 4, 2, 8, 8, 8);
-    runBench(n, x, y, z, 4, 4, 4, 8, 8, 8);
+    runBench(n, x, y, z, 64, 1, 1, 16, 8, 4);
+    runBench(n, x, y, z, 64, 1, 1, 32, 8, 2);
+    runBench(n, x, y, z, 64, 1, 1, 64, 8, 1);
+    runBench(n, x, y, z, 64, 1, 1, 128, 4, 1);
+    runBench(n, x, y, z, 64, 1, 1, 256, 2, 1);
+    runBench(n, x, y, z, 64, 1, 1, 512, 1, 1);
+
+
+
 
 
     printf("\n");
