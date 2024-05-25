@@ -21,10 +21,25 @@ void add(int n, float *x, float *y, float *z)
     }
 }
 
+void runBench(int n, float *x, float *y, float *z, dimX, dimY, dimZ){
+        dim3 sizevec(dimX, dimY, dimZ);
+        printf("Calc...\n");
+        clock_t begin = clock();
+        add<<<1, sizevec>>>(n, x, y, z);
+        cudaDeviceSynchronize();
+        printf("Calc complete\n");
+        clock_t end = clock();
+        double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+        printf("Time spent for %d %d %d: %f. Resetting z...\n", dimX, dimY, dimZ, time_spent);
+        for(int i = 0; i < n; i++){
+            z[i] = 0;
+        }
+        printf("z reset\n");
+}
+
 int main()
 {
     int n = 32768;
-    dim3 sizevec(8, 16, 1);
     float *x, *y, *z;
     cudaMallocManaged(&x, n*sizeof(float));
     cudaMallocManaged(&y, n*sizeof(float));
@@ -39,15 +54,7 @@ int main()
     }
     printf("Init complete\n");
 
-
-    printf("Calc...\n");
-    clock_t begin = clock();
-    add<<<1, sizevec>>>(n, x, y, z);
-    cudaDeviceSynchronize();
-    printf("Calc complete\n");
-    clock_t end = clock();
-    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-    printf("Time spent: %f\n", time_spent);
+    runBench(n, x, y, z, 8, 8, 8);
 
     for(int i = 0; i < n; i++){
     if(z[i] != x[i] + y[i]){
