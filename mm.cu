@@ -24,7 +24,7 @@ void mm(float *a, float *b, float *c, int n){
     //printf("%d %d\n", tx, ty);
 
     if(tx == 0){
-        if(ty == 0){
+        if(ty == 1){
             printf("yo");
         }
     }
