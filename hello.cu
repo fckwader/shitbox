@@ -8,7 +8,9 @@ void add(int n, float *x, float *y, float *z)
 {
     int index = threadIdx.x; //current thread index
     int stride = blockDim.x; //num of threads in block
-    printf("X %d Y %d Z %d\n", blockDim.x, blockDim.y, blockDim.z);
+    if(index == 0){
+        printf("X %d Y %d Z %d\n", blockDim.x, blockDim.y, blockDim.z);
+    }
 
     for(int i = index; i < n; i += stride){
         z[i] = x[i] + y[i];
