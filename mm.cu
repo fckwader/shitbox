@@ -23,12 +23,7 @@ void mm(float *a, float *b, float *c, int n){
 
     //printf("%d %d\n", tx, ty);
 
-    if(tx == 0){
-        printf("Is ty = 0? %d\n", ty == 0);
-        if(ty == 0){
-            printf("TY IS 0\n");
-        }
-    }
+    printf("Ty: %d, n: %d", ty, n);
 
     for(int j = ty; j < n; j+=blockDim.y){
         for(int k = 0; k < n; k++){
