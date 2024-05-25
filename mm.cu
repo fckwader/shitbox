@@ -53,7 +53,7 @@ printf("------\n");
 }
 
 int main(){
-    int n = 100;
+    int n = 1000;
     dim3 vec(8, 8, 1);
     float *a, *b, *c;
     cudaMallocManaged(&a, n*n*sizeof(float));
