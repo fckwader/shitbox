@@ -10,7 +10,7 @@ void init(float *a, float *b, float *c, int n){
             }else{
                 b[i*n + j] = 0;
             }
-            c[i*n + j] = (i*j + 1)% 13;
+            c[i*n + j] = (i*j + 1) % 13;
         }
     }
 }
@@ -29,16 +29,18 @@ void mm(float *a, float *b, float *c, int n){
 }
 
 void printm(float *a, int n){
+printf("-----\n");
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
             printf("%d ", a[i*n + j]);
         }
         printf("\n");
     }
+printf("------\n");
 }
 
 int main(){
-    int n = 16;
+    int n = 10;
     dim3 vec(8, 8, 1);
     float a[n*n], b[n*n], c[n*n];
 
