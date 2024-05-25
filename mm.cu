@@ -24,7 +24,7 @@ void mm(float *a, float *b, float *c, int n){
     //printf("%d %d\n", tx, ty);
 
     if(tx == 0){
-        printf("0 facts");
+        printf("0 facts\n");
     }
 
     for(int j = ty; j < n; j+=blockDim.y){
