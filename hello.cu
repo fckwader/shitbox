@@ -21,7 +21,7 @@ void add(int n, float *x, float *y, float *z)
     }
 }
 
-void runBench(int n, float *x, float *y, float *z, dimX, dimY, dimZ){
+void runBench(int n, float *x, float *y, float *z, int dimX, int dimY, int dimZ){
         dim3 sizevec(dimX, dimY, dimZ);
         printf("Calc...\n");
         clock_t begin = clock();
