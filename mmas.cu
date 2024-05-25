@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
         printf("Problem with the first number  N .");
         exit(2);
     }
-    int          REP       = 100;
+    int          REP       = 1;
     unsigned int grid_rows = (N + BLOCK_SIZE - 1) / BLOCK_SIZE;
     unsigned int grid_cols = (N + BLOCK_SIZE - 1) / BLOCK_SIZE;
     dim3         dimGrid(grid_cols, grid_rows);
