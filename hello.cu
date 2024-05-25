@@ -8,9 +8,9 @@ __global__
 void add(int n, float *x, float *y, float *z)
 {
 
-    printf("GridDim: %d %d %d", gridDim.x, gridDim.y, gridDim.z);
+    int blockNr = blockIdx.x + blockIdx.y * gridDim.x + blockIdx.z * gridDim.x * gridDim.y;
 
-    int index = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * blockDim.x * blockDim.y;
+    int index = blockNr * blockDim.x * blockDim.y * blockDim.z + threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * blockDim.x * blockDim.y;
 
     int stride = blockDim.x * blockDim.y * blockDim.z * gridDim.x;
 
