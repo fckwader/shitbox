@@ -13,7 +13,7 @@ void add(int n, float *x, float *y, float *z)
 
 int main()
 {
-    int n = 1000000;
+    int n = 1000;
     float x[n];
     float y[n];
     float z[n];
