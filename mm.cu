@@ -23,7 +23,7 @@ void mm(float *a, float *b, float *c, int n){
 
     for(int j = ty; j < n; j+=blockDim.y){
         for(int k = 0; k < n; k++){
-            printf("%.1f", b[tx * n + k] * c[k * n + j]);
+            printf("calc");
             a[tx * n + j] += b[tx * n + k] * c[k * n + j];
         }
     }
