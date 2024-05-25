@@ -1,9 +1,8 @@
 #include <stdio.h>
 
-__global__
-void print()
+__global__ void print()
 {
-    printf("FAWKKK");
+    printf("FAWKKK\n");
 }
 
 int main()
