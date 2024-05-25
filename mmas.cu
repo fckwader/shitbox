@@ -58,6 +58,7 @@ int main(int argc, char *argv[])
     int          REP       = 100;
     unsigned int grid_rows = (N + BLOCK_SIZE - 1) / BLOCK_SIZE;
     unsigned int grid_cols = (N + BLOCK_SIZE - 1) / BLOCK_SIZE;
+    printf("Grid: %d %d\n", grid_rows, grid_cols);
     dim3         dimGrid(grid_cols, grid_rows);
     dim3         dimBlock(BLOCK_SIZE, BLOCK_SIZE);
 
