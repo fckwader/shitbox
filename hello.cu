@@ -8,7 +8,6 @@ __global__
 void add(int n, float *x, float *y, float *z)
 {
 
-
     int index = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * blockDim.x * blockDim.y;
 
     int stride = blockDim.x * blockDim.y * blockDim.z * gridDim.x;
@@ -21,11 +20,12 @@ void add(int n, float *x, float *y, float *z)
     }
 }
 
-void runBench(int n, float *x, float *y, float *z, int dimX, int dimY, int dimZ){
+void runBench(int n, float *x, float *y, float *z, int bx, int by, int bz, int dimX, int dimY, int dimZ){
+        dim3 blockvec(bx, by, bz);
         dim3 sizevec(dimX, dimY, dimZ);
         //printf("Calc... ");
         clock_t begin = clock();
-        add<<<1, sizevec>>>(n, x, y, z);
+        add<<<blockvec, sizevec>>>(n, x, y, z);
         cudaDeviceSynchronize();
         //printf("Calc complete.\n");
         clock_t end = clock();
@@ -65,16 +65,7 @@ int main()
     }
     printf("Init complete.\n");
 
-    runBench(n, x, y, z, 512, 1, 1);
-    runBench(n, x, y, z, 1, 512, 1);
-    runBench(n, x, y, z, 1, 1, 512);
-    runBench(n, x, y, z, 8, 8, 8);
-    runBench(n, x, y, z, 16, 4, 8);
-    runBench(n, x, y, z, 4, 16, 8);
-    runBench(n, x, y, z, 8, 16, 4);
-    runBench(n, x, y, z, 8, 4, 16);
-    runBench(n, x, y, z, 4, 8, 16);
-    runBench(n, x, y, z, 16, 8, 4);
+    runBench(n, x, y, z, 2, 2, 2, 8, 8, 8);
     printf("\n");
 
     cudaFree(x);
