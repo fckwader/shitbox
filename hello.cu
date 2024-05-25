@@ -6,11 +6,11 @@
 __global__
 void add(int n, float *x, float *y, float *z)
 {
-    printf("Calc...\n");
+
     for(int i = 0; i < n; i++){
         z[i] = x[i] + y[i];
     }
-    printf("Calc complete\n");
+
 }
 
 int main()
@@ -30,9 +30,10 @@ int main()
     }
     printf("Init complete\n");
 
+    printf("Calc...\n");
     add<<<1, 256>>>(n, x, y, z);
-
     cudaDeviceSynchronize();
+    printf("Calc complete\n");
 
     for(int i = 0; i < n; i++){
         if(z[i] != x[i] + y[i]){
