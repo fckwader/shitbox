@@ -24,8 +24,8 @@ int main()
     //init
     printf("Init...\n");
     for(int i = 0; i < n; i++){
-        x[i] = (float) ((i * 2.5) % 13);
-        y[i] = (i * 1.9) % 25;
+        x[i] = i % 8;
+        y[i] = i % 25;
         z[i] = 0;
     }
     printf("Init complete\n");
