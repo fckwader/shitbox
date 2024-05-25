@@ -59,6 +59,7 @@ int main()
     for(int i = 0; i < n; i++){
     if(z[i] != x[i] + y[i]){
          printf("ERROR: Expected %d, got %d\n", x[i]+y[i], z[i]);
+         return -1;
     }
     }
     printf("\n");
