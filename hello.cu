@@ -69,7 +69,8 @@ int main()
 
     printf("| BX | BY | BZ | TX | TY | TZ | t |\n");
 
-    runBench(n, x, y, z, 16, 16, 16, 8, 8, 8);
+    runBench(n, x, y, z, 2, 8, 4, 8, 8, 8);
+    runBench(n, x, y, z, 4, 4, 4, 8, 8, 8);
     printf("\n");
 
     cudaFree(x);
