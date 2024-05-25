@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 __global__
-int print()
+void print()
 {
     printf("FAWKKK");
 }
