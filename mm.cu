@@ -21,10 +21,12 @@ void mm(float *a, float *b, float *c, int n){
     int tx = threadIdx.x;
     int ty = threadIdx.y;
 
-
-    for(int j = ty; j < n; j+=blockDim.y){
-        for(int k = 0; k < n; k++){
-            a[tx * n + j] += b[tx * n + k] * c[k * n + j];
+    for(int i = tx; i < n; i+=blockDim.x)
+    {
+        for(int j = ty; j < n; j+=blockDim.y){
+            for(int k = 0; k < n; k++){
+                a[i * n + j] += b[i * n + k] * c[k * n + j];
+            }
         }
     }
 }
