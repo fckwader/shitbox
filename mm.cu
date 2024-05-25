@@ -32,6 +32,7 @@ int main(){
 
     init(a, b, c, n);
     mm<<<1, vec>>>(a, b, c, n);
+    cudaDeviceSynchronize();
     return 0;
 
 }
