@@ -21,11 +21,9 @@ void mm(float *a, float *b, float *c, int n){
     int tx = threadIdx.x;
     int ty = threadIdx.y;
 
-    //printf("%d %d\n", tx, ty);
-
-    printf("Ty: %d, n: %d", ty, n);
 
     for(int j = ty; j < n; j+=blockDim.y){
+        printf("j: %d, n: %d", j, n);
         for(int k = 0; k < n; k++){
             a[tx * n + j] += b[tx * n + k] * c[k * n + j];
         }
