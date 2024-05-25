@@ -4,7 +4,7 @@
 
 
 
-void add(int n, float *x, float *y)
+void add(int n, float *x, float *y, float *z)
 {
     for(int i = 0; i < n; i++){
         z[i] = x[i] + y[i];
@@ -25,7 +25,7 @@ int main()
         z[i] = 0;
     }
 
-    add(n, x, y);
+    add(n, x, y, z);
 
     for(int i = 0; i < n; i++){
         if(z[i] != x[i] + y[i]){
