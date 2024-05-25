@@ -3,7 +3,7 @@
 
 
 
-
+__global__
 void add(int n, float *x, float *y, float *z)
 {
     for(int i = 0; i < n; i++){
@@ -13,10 +13,11 @@ void add(int n, float *x, float *y, float *z)
 
 int main()
 {
-    int n = 1000;
-    float x[n];
-    float y[n];
-    float z[n];
+    int n = 1000000;
+    float *x, *y, *z;
+    cudaMallocManaged(&x, n*sizeof(float));
+    cudaMallocManaged(&y, n*sizeof(float));
+    cudaMallocManaged(&z, n*sizeof(float));
 
     //init
     for(int i = 0; i < n; i++){
@@ -25,13 +26,17 @@ int main()
         z[i] = 0;
     }
 
-    add(n, x, y, z);
+    add<<<1, 1>>>(n, x, y, z);
 
     for(int i = 0; i < n; i++){
         if(z[i] != x[i] + y[i]){
             printf("ERROR: Expected %d, got %d", x[i]+y[i], z[i]);
         }
     }
+
+    cudaFree(x);
+    cudaFree(y);
+    cudaFree(z);
 
     return 0;
 }
