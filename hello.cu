@@ -9,4 +9,6 @@ void print()
 int main()
 {
     print<<<1, 1>>>();
+    cudaDeviceSynchronize();
+    return 0;
 }
