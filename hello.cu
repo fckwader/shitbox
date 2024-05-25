@@ -15,7 +15,7 @@ void add(int n, float *x, float *y, float *z)
 
 int main()
 {
-    int n = 8;
+    int n = 1000000;
     float *x, *y, *z;
     cudaMallocManaged(&x, n*sizeof(float));
     cudaMallocManaged(&y, n*sizeof(float));
@@ -36,10 +36,9 @@ int main()
     printf("Calc complete\n");
 
     for(int i = 0; i < n; i++){
-       // if(z[i] != x[i] + y[i]){
-     //       printf("ERROR: Expected %d, got %d\n", x[i]+y[i], z[i]);
-     //   }
-     printf("%f + %f = %f\n", x[i], y[i], z[i]);
+    if(z[i] != x[i] + y[i]){
+        printf("ERROR: Expected %d, got %d\n", x[i]+y[i], z[i]);
+    }
     }
     printf("\n");
 
