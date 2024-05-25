@@ -70,10 +70,18 @@ int main()
     printf("| BX | BY | BZ | TX | TY | TZ | t |\n");
 
 
-    for(int i = 1; i <= 8; i*=2){
-    int j = 8 / i;
-        runBench(n, x, y, z, i, i, i, j, j, j);
-    }
+    runBench(n, x, y, z, 64, 1, 1, 8, 8, 8);
+    runBench(n, x, y, z, 32, 2, 1, 8, 8, 8);
+    runBench(n, x, y, z, 32, 1, 2, 8, 8, 8);
+    runBench(n, x, y, z, 16, 4, 1, 8, 8, 8);
+    runBench(n, x, y, z, 16, 2, 2, 8, 8, 8);
+    runBench(n, x, y, z, 16, 1, 4, 8, 8, 8);
+    runBench(n, x, y, z, 2, 2, 16, 8, 8, 8);
+    runBench(n, x, y, z, 1, 4, 16, 8, 8, 8);
+    runBench(n, x, y, z, 4, 1, 16, 8, 8, 8);
+    runBench(n, x, y, z, 2, 16, 2, 8, 8, 8);
+    runBench(n, x, y, z, 4, 16, 1, 8, 8, 8);
+    runBench(n, x, y, z, 1, 16, 4, 8, 8, 8);
 
     printf("\n");
 
