@@ -52,7 +52,7 @@ void runBench(int n, float *x, float *y, float *z, int bx, int by, int bz, int d
 
 int main()
 {
-    int n = 32768;
+    int n = 1000000;
     float *x, *y, *z;
     cudaMallocManaged(&x, n*sizeof(float));
     cudaMallocManaged(&y, n*sizeof(float));
