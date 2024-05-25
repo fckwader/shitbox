@@ -6,12 +6,11 @@
 __global__
 void add(int n, float *x, float *y, float *z)
 {
+    printf("Calc...\n");
     for(int i = 0; i < n; i++){
         z[i] = x[i] + y[i];
-        if(i%1000 == 0){
-            printf(".");
-        }
     }
+    printf("Calc complete\n");
 }
 
 int main()
@@ -23,11 +22,13 @@ int main()
     cudaMallocManaged(&z, n*sizeof(float));
 
     //init
+    printf("Init...\n");
     for(int i = 0; i < n; i++){
         x[i] = (i * 2) % 13;
         y[i] = (i * 3) % 25;
         z[i] = 0;
     }
+    printf("Init complete\n");
 
     add<<<1, 256>>>(n, x, y, z);
 
