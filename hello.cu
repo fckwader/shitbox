@@ -32,7 +32,7 @@ void runBench(int n, float *x, float *y, float *z, int bx, int by, int bz, int d
         //printf("Calc complete.\n");
         clock_t end = clock();
         double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-        printf("| %d | %d | %d | %d | %d | %d | %f |", bx, by, bz, dimX, dimY, dimZ, time_spent);
+        printf("| %d | %d | %d | %d | %d | %d | %f |\n", bx, by, bz, dimX, dimY, dimZ, time_spent);
 
         //printf("Verifying... ");
         for(int i = 0; i < n; i++){
@@ -67,7 +67,7 @@ int main()
     }
     printf("Init complete.\n");
 
-    printf("| BX | BY | BZ | TX | TY | TZ | t |");
+    printf("| BX | BY | BZ | TX | TY | TZ | t |\n");
 
     runBench(n, x, y, z, 2, 2, 2, 8, 8, 8);
     printf("\n");
