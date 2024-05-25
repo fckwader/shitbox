@@ -41,7 +41,7 @@ int main()
 
     printf("Calc...\n");
     clock_t begin = clock();
-    add<<<8, sizevec>>>(n, x, y, z);
+    add<<<8, 64>>>(n, x, y, z);
     cudaDeviceSynchronize();
     printf("Calc complete\n");
     clock_t end = clock();
