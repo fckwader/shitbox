@@ -24,8 +24,7 @@ void add(int n, float *x, float *y, float *z)
 int main()
 {
     int n = 32768;
-    int blockSize = 8;
-    dim3 sizevec(4, 2, 8);
+    dim3 sizevec(8, 8, 1);
     float *x, *y, *z;
     cudaMallocManaged(&x, n*sizeof(float));
     cudaMallocManaged(&y, n*sizeof(float));
