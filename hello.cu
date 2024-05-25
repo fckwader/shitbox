@@ -66,6 +66,7 @@ int main()
     printf("Init complete\n");
 
     runBench(n, x, y, z, 8, 8, 8);
+    runBench(n, x, y, z, 16, 4, 1);
 
     printf("\n");
 
