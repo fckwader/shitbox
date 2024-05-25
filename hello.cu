@@ -27,7 +27,7 @@ int main()
         x[i] = (i * 2) % 13;
         y[i] = (i * 3) % 25;
         z[i] = 0;
-        printf("INIT X: %d, Y: %d, Z: %d", x[i], y[i], z[i]);
+        printf("INIT X: %d, Y: %d, Z: %d\n", x[i], y[i], z[i]);
     }
     printf("Init complete\n");
 
