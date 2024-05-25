@@ -14,7 +14,7 @@ void add(int n, float *x, float *y, float *z)
 
     for (int i = index; i < n; i += stride){
         if(index == 0){
-            printf("0 0 is running i=%d\n", i);
+       //     printf("0 0 is running i=%d\n", i);
         }
         z[i] = x[i] + y[i];
     }
