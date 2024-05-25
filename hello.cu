@@ -69,6 +69,10 @@ int main()
 
     printf("| BX | BY | BZ | TX | TY | TZ | t |\n");
 
+    for(int i = 0; i < 32; i*=2){
+        printf("%d ", i);
+    }
+
     for(int i = 1; i <= 8; i++){
         runBench(n, x, y, z, i, i, i, 8, 8, 8);
     }
