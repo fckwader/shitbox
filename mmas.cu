@@ -9,7 +9,7 @@ __global__ void globalMM(double *__restrict__ a,
                          double *__restrict__ b,
                          double *__restrict__ c,
                          int N,
-                         int REP, int *flopcount)
+                         int REP, double *flopcount)
 {
 
     int    row = blockIdx.y * blockDim.y + threadIdx.y;
@@ -67,8 +67,8 @@ int main(int argc, char *argv[])
     double *b = (double *)malloc(sizeof(double) * N * N);
     double *c = (double *)malloc(sizeof(double) * N * N);
 
-    int *flopcount;
-    cudaMallocManaged(&flopcount, sizeof(int));
+    double *flopcount;
+    cudaMallocManaged(&flopcount, sizeof(double));
 
     double *d_a, *d_b, *d_c;
     /*
@@ -138,8 +138,8 @@ int main(int argc, char *argv[])
     Checksum(N, c, checksum);
     */
 
-    printf("gf: %d\n", gf);
-    printf("Flop count: %d\n", flopcount);
+    printf("gf: %f\n", gf);
+    printf("Flop count: %f\n", flopcount);
 
     free(a);
     free(b);
