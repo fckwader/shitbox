@@ -138,6 +138,7 @@ int main(int argc, char *argv[])
     Checksum(N, c, checksum);
     */
 
+    printf("gf: %d\n", gf);
     printf("Flop count: %d\n", flopcount);
 
     free(a);
