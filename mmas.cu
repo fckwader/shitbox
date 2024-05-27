@@ -18,11 +18,14 @@ __global__ void globalMM(double *__restrict__ a,
 
     for (int r = 0; r < REP; ++r)
         if (col < N && row < N) {
+            int county = 0;
             #pragma unroll
             for (int i = 0; i < N; i++) {
                 sum += a[row * N + i] * b[i * N + col];
+                county += 1;
                 //flopcount += 2;
             }
+            printf("County: %d\n", county);
             c[row * N + col] = sum;
         }
 }
