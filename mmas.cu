@@ -19,6 +19,7 @@ __global__ void globalMM(double *__restrict__ a,
     #pragma unroll
     for (int r = 0; r < REP; ++r)
         if (col < N && row < N) {
+            #pragma unroll
             for (int i = 0; i < N; i++) {
                 sum += a[row * N + i] * b[i * N + col];
                 //flopcount += 2;
