@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
     cudaMemcpy(d_c, c, sizeof(double) * N * N, cudaMemcpyHostToDevice);
 
     using dsec = std::chrono::duration<double>;
-    double gf  = 2.0 * (double)N * N * N * REP * 1.0e-9;
+    double gf  = 2.0 * (double)N * N * N * REP; //* 1.0e-9;
 
     // Compute Checksum for Simple Correctness Checks
     double checksum = cpu_matrix_mult_checksum(a, b, N, REP);
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     // Calculate Flops/sec,
     double dur = std::chrono::duration_cast<dsec>(t1 - t0).count();
     std::cout << "MM GFlops/s (N=" << N << "): " << gf / dur << std::endl;
-    printf("GFLOP count: %f, time: %f\n", gf, dur);
+    printf("FLOP count: %f, time: %f\n", gf, dur);
 
     // Copy the result back to CPU & correctness check
     cudaMemcpy(c, d_c, sizeof(double) * N * N, cudaMemcpyDeviceToHost);
