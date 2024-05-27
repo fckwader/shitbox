@@ -9,7 +9,7 @@ __global__ void globalMM(double *__restrict__ a,
                          double *__restrict__ b,
                          double *__restrict__ c,
                          int N,
-                         int REP)
+                         int REP, int *flopcount)
 {
 
     int    row = blockIdx.y * blockDim.y + threadIdx.y;
@@ -20,6 +20,7 @@ __global__ void globalMM(double *__restrict__ a,
         if (col < N && row < N) {
             for (int i = 0; i < N; i++) {
                 sum += a[row * N + i] * b[i * N + col];
+                flopcount += 2;
             }
             c[row * N + col] = sum;
         }
@@ -66,6 +67,9 @@ int main(int argc, char *argv[])
     double *b = (double *)malloc(sizeof(double) * N * N);
     double *c = (double *)malloc(sizeof(double) * N * N);
 
+    int *flopcount;
+    cudaMallocManaged(&flopcount, sizeof(int));
+
     double *d_a, *d_b, *d_c;
     /*
      * TODO:Task e: Use UVA for device memory
@@ -87,7 +91,7 @@ int main(int argc, char *argv[])
     cudaMemcpy(d_c, c, sizeof(double) * N * N, cudaMemcpyHostToDevice);
 
     using dsec = std::chrono::duration<double>;
-    double gf  = 2.0 * (double)N * N * N * REP; //* 1.0e-9;
+    double gf  = 2.0 * (double)N * N * N * REP * 1.0e-9;
 
     // Compute Checksum for Simple Correctness Checks
     double checksum = cpu_matrix_mult_checksum(a, b, N, REP);
@@ -97,14 +101,13 @@ int main(int argc, char *argv[])
      */
     dim3 dimBlockMM(N, N);
     auto t0 = std::chrono::high_resolution_clock::now();
-    CUDA_CHECK_ERR_LAST(globalMM<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, N, REP));
+    CUDA_CHECK_ERR_LAST(globalMM<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, N, REP, flopcount));
     CUDA_CHECK_ERR(cudaDeviceSynchronize());
     auto t1 = std::chrono::high_resolution_clock::now();
 
     // Calculate Flops/sec,
     double dur = std::chrono::duration_cast<dsec>(t1 - t0).count();
     std::cout << "MM GFlops/s (N=" << N << "): " << gf / dur << std::endl;
-    printf("FLOP count: %f, time: %f\n", gf, dur);
 
     // Copy the result back to CPU & correctness check
     cudaMemcpy(c, d_c, sizeof(double) * N * N, cudaMemcpyDeviceToHost);
