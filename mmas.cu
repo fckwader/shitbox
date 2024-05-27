@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     dim3         dimGrid(grid_cols, grid_rows);
     dim3         dimBlock(BLOCK_SIZE, BLOCK_SIZE);
 
-    /* Memory allocations and initializations of matices */
+    /* Memory allocations and initializations of matrices */
     double *a = (double *)malloc(sizeof(double) * N * N);
     double *b = (double *)malloc(sizeof(double) * N * N);
     double *c = (double *)malloc(sizeof(double) * N * N);
@@ -107,6 +107,7 @@ int main(int argc, char *argv[])
     // Calculate Flops/sec,
     double dur = std::chrono::duration_cast<dsec>(t1 - t0).count();
     std::cout << "MM GFlops/s (N=" << N << "): " << gf / dur << std::endl;
+    printf("GFLOP count: %d, time: %f", gf, dur);
 
     // Copy the result back to CPU & correctness check
     cudaMemcpy(c, d_c, sizeof(double) * N * N, cudaMemcpyDeviceToHost);
