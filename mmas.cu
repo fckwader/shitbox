@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
     cudaMemcpy(d_c, c, sizeof(double) * N * N, cudaMemcpyHostToDevice);
 
     using dsec = std::chrono::duration<double>;
-    double gf  = 2.0 * (double)N * N * N * REP; // * 1.0e-9;
+    double gf  = 2.0 * (double)N * N * N * REP * 1.0e-9;
 
     // Compute Checksum for Simple Correctness Checks
     double checksum = cpu_matrix_mult_checksum(a, b, N, REP);
