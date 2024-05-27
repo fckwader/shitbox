@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     // Calculate Flops/sec,
     double dur = std::chrono::duration_cast<dsec>(t1 - t0).count();
     std::cout << "MM GFlops/s (N=" << N << "): " << gf / dur << std::endl;
-    printf("GFLOP count: %d, time: %f\n", gf, dur);
+    printf("GFLOP count: %f, time: %f\n", gf, dur);
 
     // Copy the result back to CPU & correctness check
     cudaMemcpy(c, d_c, sizeof(double) * N * N, cudaMemcpyDeviceToHost);
