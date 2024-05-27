@@ -20,7 +20,7 @@ __global__ void globalMM(double *__restrict__ a,
         if (col < N && row < N) {
             for (int i = 0; i < N; i++) {
                 sum += a[row * N + i] * b[i * N + col];
-                flopcount += 2;
+                //flopcount += 2;
             }
             c[row * N + col] = sum;
         }
@@ -139,7 +139,7 @@ int main(int argc, char *argv[])
     */
 
     printf("gf: %f\n", gf);
-    printf("Flop count: %f\n", flopcount);
+ //   printf("Flop count: %f\n", flopcount);
 
     free(a);
     free(b);
