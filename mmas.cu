@@ -22,7 +22,6 @@ __global__ void globalMM(double *__restrict__ a,
             #pragma unroll
             for (int i = 0; i < N; i++) {
                 sum += a[row * N + i] * b[i * N + col];
-                county += 1;
                 //flopcount += 2;
             }
             printf("County: %d\n", county);
