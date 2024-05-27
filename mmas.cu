@@ -16,7 +16,6 @@ __global__ void globalMM(double *__restrict__ a,
     int    col = blockIdx.x * blockDim.x + threadIdx.x;
     double sum = 0.0;
 
-    #pragma unroll
     for (int r = 0; r < REP; ++r)
         if (col < N && row < N) {
             #pragma unroll
