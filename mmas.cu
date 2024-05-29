@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
     double *b = (double *)malloc(sizeof(double) * N * N);
     double *c = (double *)malloc(sizeof(double) * N * N);
 
-    cudaHostRegister(a, sizeof(double) * N * N);
+    cudaHostRegister(a, sizeof(double) * N * N, cudaHostRegisterReadOnly);
 
     double *flopcount;
     cudaMallocManaged(&flopcount, sizeof(double));
