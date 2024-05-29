@@ -38,7 +38,7 @@ __global__ void sharedTiledMM(double *__restrict__ a,
                               int N,
                               int REP)
 {
-
+    __shared__ float test;
 }
 
 int main(int argc, char *argv[])
