@@ -81,7 +81,6 @@ int main(int argc, char *argv[])
     cudaMallocHost(&a, sizeof(double) * N * N);
     cudaMallocHost(&b, sizeof(double) * N * N);
     cudaMallocHost(&b, sizeof(double) * N * N);
-    printf("POST HOST\n");
 
     double *flopcount;
     cudaMallocManaged(&flopcount, sizeof(double));
@@ -93,6 +92,8 @@ int main(int argc, char *argv[])
     cudaMalloc(&d_a, sizeof(double) * N * N);
     cudaMalloc(&d_b, sizeof(double) * N * N);
     cudaMalloc(&d_c, sizeof(double) * N * N);
+
+    printf("test\n");
 
     // Initialization on CPU
 #pragma omp parallel for schedule(static)
