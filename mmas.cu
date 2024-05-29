@@ -60,11 +60,6 @@ int main(int argc, char *argv[])
     int device = 0;
     cudaSetDevice(device);
 
-    cudaDeviceProp prop;
-    cudaGetDeviceProperties(&prop, 0);
-
-    printf("TRUE? %d\n", prop.pageableMemoryAccessUsesHostPageTables);
-
     if (argc < 2) {
         printf("For C(NxN) = A(NxN)* B(NxN), Matrix size value N must be provided !\n");
         exit(1);
@@ -107,6 +102,10 @@ int main(int argc, char *argv[])
         b[i] = cos(i);
         c[i] = 0.0;
     }
+
+    cudaHostRegister(a, sizeof(double) * N * N, cudaHostRegisterReadOnly);
+    cudaHostRegister(b, sizeof(double) * N * N, cudaHostRegisterReadOnly);
+
     // Copy initial values to GPUs
     cudaMemcpy(d_a, a, sizeof(double) * N * N, cudaMemcpyHostToDevice);
     cudaMemcpy(d_b, b, sizeof(double) * N * N, cudaMemcpyHostToDevice);
