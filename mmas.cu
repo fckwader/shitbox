@@ -39,8 +39,7 @@ __global__ void sharedTiledMM(double *__restrict__ a,
                               int N,
                               int REP)
 {
-    int tilesize = 4;
-    double tileA[tilesize];
+    double tileA[4];
 }
 
 int main(int argc, char *argv[])
