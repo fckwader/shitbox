@@ -39,9 +39,14 @@ __global__ void sharedTiledMM(double *__restrict__ a,
                               int REP)
 {
     int tilesize = blockDim.x * blockDim.y;
-    printf("Tilesize: %d\n", tilesize);
-    __shared__ double *test;
-    cudaMalloc(&test, tilesize * sizeof(double));
+    __shared__ double *a, *b;
+    cudaMalloc(&a, tilesize * sizeof(double));
+    cudaMalloc(&b, tilesize * sizeof(double));
+
+    int row = blockIdx.x * blockDim.x + threadIdx.x;
+    int column = blockIdx.y * blockDim.y + threadIdx.y;
+
+    printf("Row: %d, Column: %d\n", row, column);
 }
 
 int main(int argc, char *argv[])
