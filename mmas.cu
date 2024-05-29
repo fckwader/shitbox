@@ -77,6 +77,7 @@ int main(int argc, char *argv[])
     dim3         dimBlock(BLOCK_SIZE, BLOCK_SIZE);
 
     /* Memory allocations and initializations of matrices */
+    printf("hi bro\n");
     double *a, *b, *c;
     cudaMallocHost(&a, sizeof(double) * N * N);
     cudaMallocHost(&b, sizeof(double) * N * N);
