@@ -46,7 +46,7 @@ __global__ void sharedTiledMM(double *__restrict__ a,
     int row = blockIdx.x * blockDim.x + threadIdx.x;
     int column = blockIdx.y * blockDim.y + threadIdx.y;
 
-    printf("Row: %d, Column: %d\n", row, column);
+    printf("Row: %d, Column: %d, Thread: %d %d\n", row, column, threadIdx.x, threadIdx.y);
 }
 
 int main(int argc, char *argv[])
