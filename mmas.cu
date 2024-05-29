@@ -39,9 +39,9 @@ __global__ void sharedTiledMM(double *__restrict__ a,
                               int REP)
 {
     int tilesize = blockDim.x * blockDim.y;
-    __shared__ double *a, *b;
-    cudaMalloc(&a, tilesize * sizeof(double));
-    cudaMalloc(&b, tilesize * sizeof(double));
+    __shared__ double *ta, *tb;
+    cudaMalloc(&ta, tilesize * sizeof(double));
+    cudaMalloc(&tb, tilesize * sizeof(double));
 
     int row = blockIdx.x * blockDim.x + threadIdx.x;
     int column = blockIdx.y * blockDim.y + threadIdx.y;
