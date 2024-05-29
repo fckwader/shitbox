@@ -39,6 +39,7 @@ __global__ void sharedTiledMM(double *__restrict__ a,
                               int REP)
 {
     const int penis = 16;
+    printf("%d\n", *(&penis));
     __shared__ double test[penis];
 }
 
