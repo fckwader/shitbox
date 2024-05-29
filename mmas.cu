@@ -1,4 +1,5 @@
 #include "cudautil.h"
+#include <time.h>
 
 #define BLOCK_SIZE 32
 
@@ -55,7 +56,7 @@ __global__ void sharedTiledMM(double *__restrict__ a,
 
 int main(int argc, char *argv[])
 {
-
+    clock_t totalStart = clock();
     int device = 0;
     cudaSetDevice(device);
 
@@ -159,12 +160,17 @@ int main(int argc, char *argv[])
   //  printf("gf: %f\n", gf);
  //   printf("Flop count: %f\n", flopcount);
 
-    free(a);
-    free(b);
-    free(c);
+    cudaFreeHost(a);
+    cudaFreeHost(b);
+    cudaFreeHost(c);
     cudaFree(d_a);
     cudaFree(d_b);
     cudaFree(d_c);
+
+    clock_t totalEnd = clock();
+    double totalTime = (double)(end - begin) / CLOCKS_PER_SEC;
+    printf("Total time: %f\n", totalTime);
+
 
     return 0;
 }
