@@ -77,10 +77,9 @@ int main(int argc, char *argv[])
     dim3         dimBlock(BLOCK_SIZE, BLOCK_SIZE);
 
     /* Memory allocations and initializations of matrices */
-    double *a, *b, *c;
-    cudaMallocHost(&a, sizeof(double) * N * N);
-    cudaMallocHost(&b, sizeof(double) * N * N);
-    cudaMallocHost(&b, sizeof(double) * N * N);
+    double *a = (double *)malloc(sizeof(double) * N * N);
+    double *b = (double *)malloc(sizeof(double) * N * N);
+    double *c = (double *)malloc(sizeof(double) * N * N);
 
     double *flopcount;
     cudaMallocManaged(&flopcount, sizeof(double));
@@ -93,24 +92,17 @@ int main(int argc, char *argv[])
     cudaMalloc(&d_b, sizeof(double) * N * N);
     cudaMalloc(&d_c, sizeof(double) * N * N);
 
-
     // Initialization on CPU
 #pragma omp parallel for schedule(static)
     for (int i = 0; i < N * N; ++i) {
-        printf("test1\n");
         a[i] = atan(i);
         b[i] = cos(i);
         c[i] = 0.0;
-        printf("test2\n");
-
     }
-    printf("byeah before cpy\n");
     // Copy initial values to GPUs
     cudaMemcpy(d_a, a, sizeof(double) * N * N, cudaMemcpyHostToDevice);
     cudaMemcpy(d_b, b, sizeof(double) * N * N, cudaMemcpyHostToDevice);
     cudaMemcpy(d_c, c, sizeof(double) * N * N, cudaMemcpyHostToDevice);
-
-    printf("byeah after cpy\n");
 
     using dsec = std::chrono::duration<double>;
     double gf  = 2.0 * (double)N * N * N * REP * 1.0e-9;
