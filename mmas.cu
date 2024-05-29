@@ -37,9 +37,9 @@ __global__ void sharedTiledMM(double *__restrict__ a,
                               double *__restrict__ b,
                               double *__restrict__ c,
                               int N,
-                              int REP,
-                              int tilesize)
+                              int REP,)
 {
+    int tilesize = 4;
     double tileA[tilesize*tilesize];
 }
 
@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
 
 
     t0 = std::chrono::high_resolution_clock::now();
-    CUDA_CHECK_ERR_LAST(sharedTiledMM<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, N, REP, 4));
+    CUDA_CHECK_ERR_LAST(sharedTiledMM<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, N, REP));
     CUDA_CHECK_ERR(cudaDeviceSynchronize());
     t1 = std::chrono::high_resolution_clock::now();
 
