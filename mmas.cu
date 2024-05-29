@@ -18,7 +18,6 @@ __global__ void globalMM(double *__restrict__ a,
 
     for (int r = 0; r < REP; ++r)
         if (col < N && row < N) {
-            int county = 0;
             #pragma unroll
             for (int i = 0; i < N; i++) {
                 sum += a[row * N + i] * b[i * N + col];
@@ -42,6 +41,11 @@ __global__ void sharedTiledMM(double *__restrict__ a,
     int tilesize = 4;
     double *tileA;
     cudaMalloc(&tileA, tilesize * sizeof(double));
+
+    for(int i = 0; i < tilesize * tilesize; i++){
+        tileA[i] = a[i];
+    }
+
 }
 
 int main(int argc, char *argv[])
