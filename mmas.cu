@@ -39,26 +39,7 @@ __global__ void sharedTiledMM(double *__restrict__ a,
                               int N,
                               int REP)
 {
-    __shared__ shareA[2][2];
-    __shared__ shareB[2][2];
-    int width = 2;
-    int bx = blockIdx.x; int by = blockIdx.y;
-    int tx = threadIdx.x; int ty = threadIdx.y;
-    int row = by * 2 + ty;
-    int col = bx * 2 + tx;
-    float temp = 0;
-    for(int i = 0; i < width/2; ++i){
 
-          shareA[ty][tx] = A[row*width + (i*2 + tx)];
-          shareB[ty][tx] = B[(i*2 + ty)*width + col];
-          __syncthreads();
-
-         for(int k = 0; k < 2; ++k){
-           temp += shareA[ty][k] * shareB[k][tx];
-           __syncthreads();
-           }
-        }
-      c[row*width + col] = temp;
 }
 
 int main(int argc, char *argv[])
