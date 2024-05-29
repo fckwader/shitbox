@@ -168,7 +168,7 @@ int main(int argc, char *argv[])
     cudaFree(d_c);
 
     clock_t totalEnd = clock();
-    double totalTime = (double)(end - begin) / CLOCKS_PER_SEC;
+    double totalTime = (double)(totalEnd - totalStart) / CLOCKS_PER_SEC;
     printf("Total time: %f\n", totalTime);
 
 
