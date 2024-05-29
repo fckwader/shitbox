@@ -38,8 +38,8 @@ __global__ void sharedTiledMM(double *__restrict__ a,
                               int N,
                               int REP)
 {
-    const int penis = blockDim.x;
-    __shared__ double test[*(&penis)];
+    int tilesize = blockDim.x * blockDim.y;
+    __shared__ double *test;
 }
 
 int main(int argc, char *argv[])
