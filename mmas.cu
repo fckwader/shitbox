@@ -56,7 +56,6 @@ __global__ void sharedTiledMM(double *__restrict__ a,
 
 int main(int argc, char *argv[])
 {
-    clock_t totalStart = clock();
     int device = 0;
     cudaSetDevice(device);
 
@@ -106,10 +105,15 @@ int main(int argc, char *argv[])
     cudaHostRegister(a, sizeof(double) * N * N, cudaHostRegisterReadOnly);
     cudaHostRegister(b, sizeof(double) * N * N, cudaHostRegisterReadOnly);
 
+    clock_t totalStart = clock();
     // Copy initial values to GPUs
     cudaMemcpy(d_a, a, sizeof(double) * N * N, cudaMemcpyHostToDevice);
     cudaMemcpy(d_b, b, sizeof(double) * N * N, cudaMemcpyHostToDevice);
     cudaMemcpy(d_c, c, sizeof(double) * N * N, cudaMemcpyHostToDevice);
+
+    clock_t totalEnd = clock();
+    double totalTime = (double)(totalEnd - totalStart) / CLOCKS_PER_SEC;
+    printf("Total time: %f\n", totalTime);
 
     using dsec = std::chrono::duration<double>;
     double gf  = 2.0 * (double)N * N * N * REP * 1.0e-9;
@@ -168,9 +172,7 @@ int main(int argc, char *argv[])
     cudaFree(d_b);
     cudaFree(d_c);
 
-    clock_t totalEnd = clock();
-    double totalTime = (double)(totalEnd - totalStart) / CLOCKS_PER_SEC;
-    printf("Total time: %f\n", totalTime);
+
 
 
     return 0;
