@@ -77,10 +77,16 @@ int main(int argc, char *argv[])
     dim3         dimBlock(BLOCK_SIZE, BLOCK_SIZE);
 
     /* Memory allocations and initializations of matrices */
-    double *a, *b, *c;
-    cudaMallocHost((void**)&a, sizeof(double) * N * N);
-    cudaMallocHost((void**)&b, sizeof(double) * N * N);
-    cudaMallocHost((void**)&c, sizeof(double) * N * N);
+        double *a = (double *)malloc(sizeof(double) * N * N);
+        double *b = (double *)malloc(sizeof(double) * N * N);
+        double *c = (double *)malloc(sizeof(double) * N * N);
+
+    /*
+        double *a, *b, *c;
+        cudaMallocHost((void**)&a, sizeof(double) * N * N);
+        cudaMallocHost((void**)&b, sizeof(double) * N * N);
+        cudaMallocHost((void**)&c, sizeof(double) * N * N);
+    */
 
 
     double *flopcount;
@@ -102,8 +108,8 @@ int main(int argc, char *argv[])
         c[i] = 0.0;
     }
 
-    cudaHostRegister(a, sizeof(double) * N * N, cudaHostRegisterReadOnly);
-    cudaHostRegister(b, sizeof(double) * N * N, cudaHostRegisterReadOnly);
+  //  cudaHostRegister(a, sizeof(double) * N * N, cudaHostRegisterReadOnly);
+  //  cudaHostRegister(b, sizeof(double) * N * N, cudaHostRegisterReadOnly);
 
     clock_t totalStart = clock();
     // Copy initial values to GPUs
@@ -165,9 +171,9 @@ int main(int argc, char *argv[])
   //  printf("gf: %f\n", gf);
  //   printf("Flop count: %f\n", flopcount);
 
-    cudaFreeHost(a);
-    cudaFreeHost(b);
-    cudaFreeHost(c);
+    free(a);
+    free(b);
+    free(c);
     cudaFree(d_a);
     cudaFree(d_b);
     cudaFree(d_c);
