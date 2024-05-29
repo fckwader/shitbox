@@ -114,6 +114,7 @@ int main(int argc, char *argv[])
      * Basic MM Kernel Call & Time Measurements
      */
     dim3 dimBlockMM(N, N);
+    printf("DIMGRID: %d, DIMBLOCK: %d\n", dimGrid.x, dimBlock.x);
     auto t0 = std::chrono::high_resolution_clock::now();
     CUDA_CHECK_ERR_LAST(globalMM<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, N, REP, flopcount));
     CUDA_CHECK_ERR(cudaDeviceSynchronize());
