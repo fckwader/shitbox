@@ -24,11 +24,7 @@ __global__ void globalMM(double *__restrict__ a,
                 sum += a[row * N + i] * b[i * N + col];
                 //flopcount += 2;
             }
-<<<<<<< HEAD
 
-=======
-            printf("County: %d\n", county);
->>>>>>> f2d40720cf2287c131615a036ebce9b272344e51
             c[row * N + col] = sum;
         }
 }
@@ -161,7 +157,7 @@ int main(int argc, char *argv[])
     Checksum(N, c, checksum);
 
 
-    printf("gf: %f\n", gf);
+  //  printf("gf: %f\n", gf);
  //   printf("Flop count: %f\n", flopcount);
 
     free(a);
