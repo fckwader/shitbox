@@ -50,9 +50,9 @@ __global__ void sharedTiledMM(double *__restrict__ a,
 
         for(int i = 0; i < blockDim.x; i++){
             for(int j = 0; j < blockDim.y; j++){
-                printf("i: %d, j: %d, access: %d\n", i, j, i*blockDim.x + j);
                 //ta[i * blockDim.x + j] = a[i * blockDim.x + j];
                 //tb[i * blockDim.x + j] = b[i * blockDim.x + j];
+                ta[0] = a[0];
                 }
         }
 
