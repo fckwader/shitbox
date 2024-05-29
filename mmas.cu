@@ -38,9 +38,8 @@ __global__ void sharedTiledMM(double *__restrict__ a,
                               int N,
                               int REP)
 {
-    const int penis = 16;
-    printf("%d\n", *(&penis));
-    __shared__ double test[penis];
+    const int penis = blockDim.x;
+    __shared__ double test[*(&penis)];
 }
 
 int main(int argc, char *argv[])
