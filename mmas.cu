@@ -126,7 +126,8 @@ int main(int argc, char *argv[])
 
 
     t0 = std::chrono::high_resolution_clock::now();
-    CUDA_CHECK_ERR_LAST(sharedTiledMM<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, N, REP));
+    int tilesize = 4;
+    CUDA_CHECK_ERR_LAST(sharedTiledMM<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, N, REP, tilesize));
     CUDA_CHECK_ERR(cudaDeviceSynchronize());
     t1 = std::chrono::high_resolution_clock::now();
 
