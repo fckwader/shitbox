@@ -40,6 +40,7 @@ __global__ void sharedTiledMM(double *__restrict__ a,
 {
     int tilesize = blockDim.x * blockDim.y;
     __shared__ double *test;
+    cudaMalloc(&test, tilesize * sizeof(double);
 }
 
 int main(int argc, char *argv[])
