@@ -21,9 +21,7 @@ __global__ void globalMM(double *__restrict__ a,
             for (int i = 0; i < N; i++) {
                 sum += a[row * N + i] * b[i * N + col];
             }
-            if(row == 0){
-                printf("Row: %d, Col: %d\n", row, col);
-            }
+
             c[row * N + col] = sum;
         }
 }
@@ -38,7 +36,26 @@ __global__ void sharedTiledMM(double *__restrict__ a,
                               int N,
                               int REP)
 {
+    __shared__ shareA[2][2];
+    __shared__ shareB[2][2];
+    int width = 2;
+    int bx = blockIdx.x; int by = blockIdx.y;
+    int tx = threadIdx.x; int ty = threadIdx.y;
+    int row = by * 2 + ty;
+    int col = bx * 2 + tx;
+    float temp = 0;
+    for(int i = 0; i < width/2; ++i){
 
+          shareA[ty][tx] = A[row*width + (i*2 + tx)];
+          shareB[ty][tx] = B[(i*2 + ty)*width + col];
+          __syncthreads();
+
+         for(int k = 0; k < 2; ++k){
+           temp += shareA[ty][k] * shareB[k][tx];
+           __syncthreads();
+           }
+        }
+      c[row*width + col] = temp;
 }
 
 int main(int argc, char *argv[])
@@ -119,10 +136,7 @@ int main(int argc, char *argv[])
     }
     cudaMemcpy(d_c, c, sizeof(double) * N * N, cudaMemcpyHostToDevice);
 
-    /*
-     *Basic Tiled MM with Shared Memory Kernel Call & Time Measurements
-     */
-    /*
+
     t0 = std::chrono::high_resolution_clock::now();
     CUDA_CHECK_ERR_LAST(sharedTiledMM<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, N, REP));
     CUDA_CHECK_ERR(cudaDeviceSynchronize());
@@ -135,7 +149,7 @@ int main(int argc, char *argv[])
     // Copy the result back to CPU & correctness check
     cudaMemcpy(c, d_c, sizeof(double) * N * N, cudaMemcpyDeviceToHost);
     Checksum(N, c, checksum);
-    */
+
 
     free(a);
     free(b);
