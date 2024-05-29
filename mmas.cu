@@ -93,14 +93,16 @@ int main(int argc, char *argv[])
     cudaMalloc(&d_b, sizeof(double) * N * N);
     cudaMalloc(&d_c, sizeof(double) * N * N);
 
-    printf("test\n");
 
     // Initialization on CPU
 #pragma omp parallel for schedule(static)
     for (int i = 0; i < N * N; ++i) {
+        printf("test1\n");
         a[i] = atan(i);
         b[i] = cos(i);
         c[i] = 0.0;
+        printf("test2\n");
+
     }
     printf("byeah before cpy\n");
     // Copy initial values to GPUs
