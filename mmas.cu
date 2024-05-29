@@ -43,12 +43,7 @@ __global__ void sharedTiledMM(double *__restrict__ a,
     cudaMalloc(&ta, tilesize * sizeof(double));
     cudaMalloc(&tb, tilesize * sizeof(double));
 
-    for(int i = 0; i < blockDim.x; i++){
-        for(int j = 0; j < blockDim.y; j++){
-            ta[i * blockDim.x + j] = a[i * blockDim.x + j];
-            tb[i * blockDim.x + j] = b[i * blockDim.x + j];
-            }
-    }
+
 
     int row = blockIdx.x * blockDim.x + threadIdx.x;
     int column = blockIdx.y * blockDim.y + threadIdx.y;
