@@ -9,7 +9,7 @@ __global__ void globalMM(double *__restrict__ a,
                          double *__restrict__ b,
                          double *__restrict__ c,
                          int N,
-                         int REP)
+                         int REP, double *flopcount)
 {
 
     int    row = blockIdx.y * blockDim.y + threadIdx.y;
@@ -18,10 +18,17 @@ __global__ void globalMM(double *__restrict__ a,
 
     for (int r = 0; r < REP; ++r)
         if (col < N && row < N) {
+            int county = 0;
+            #pragma unroll
             for (int i = 0; i < N; i++) {
                 sum += a[row * N + i] * b[i * N + col];
+                //flopcount += 2;
             }
+<<<<<<< HEAD
 
+=======
+            printf("County: %d\n", county);
+>>>>>>> f2d40720cf2287c131615a036ebce9b272344e51
             c[row * N + col] = sum;
         }
 }
@@ -81,10 +88,13 @@ int main(int argc, char *argv[])
     dim3         dimGrid(grid_cols, grid_rows);
     dim3         dimBlock(BLOCK_SIZE, BLOCK_SIZE);
 
-    /* Memory allocations and initializations of matices */
+    /* Memory allocations and initializations of matrices */
     double *a = (double *)malloc(sizeof(double) * N * N);
     double *b = (double *)malloc(sizeof(double) * N * N);
     double *c = (double *)malloc(sizeof(double) * N * N);
+
+    double *flopcount;
+    cudaMallocManaged(&flopcount, sizeof(double));
 
     double *d_a, *d_b, *d_c;
     /*
@@ -117,7 +127,7 @@ int main(int argc, char *argv[])
      */
     dim3 dimBlockMM(N, N);
     auto t0 = std::chrono::high_resolution_clock::now();
-    CUDA_CHECK_ERR_LAST(globalMM<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, N, REP));
+    CUDA_CHECK_ERR_LAST(globalMM<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, N, REP, flopcount));
     CUDA_CHECK_ERR(cudaDeviceSynchronize());
     auto t1 = std::chrono::high_resolution_clock::now();
 
@@ -150,6 +160,9 @@ int main(int argc, char *argv[])
     cudaMemcpy(c, d_c, sizeof(double) * N * N, cudaMemcpyDeviceToHost);
     Checksum(N, c, checksum);
 
+
+    printf("gf: %f\n", gf);
+ //   printf("Flop count: %f\n", flopcount);
 
     free(a);
     free(b);
