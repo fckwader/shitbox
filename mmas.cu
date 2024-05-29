@@ -127,6 +127,7 @@ int main(int argc, char *argv[])
     cudaMemcpy(c, d_c, sizeof(double) * N * N, cudaMemcpyDeviceToHost);
     Checksum(N, c, checksum);
 
+/*
     // Reset result_arrays c and d_c
 #pragma omp parallel for schedule(static)
     for (int i = 0; i < N * N; ++i) {
@@ -147,6 +148,7 @@ int main(int argc, char *argv[])
     // Copy the result back to CPU & correctness check
     cudaMemcpy(c, d_c, sizeof(double) * N * N, cudaMemcpyDeviceToHost);
     Checksum(N, c, checksum);
+    */
 
 
   //  printf("gf: %f\n", gf);
