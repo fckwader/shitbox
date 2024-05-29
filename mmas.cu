@@ -40,8 +40,9 @@ __global__ void sharedTiledMM(double *__restrict__ a,
 {
     int tilesize = 4;
     double *tileA;
-    cudaMalloc(&tileA, tilesize * sizeof(double));
-
+    double *tileB;
+    cudaMallocManaged(&tileA, tilesize * sizeof(double));
+    cudaMallocManaged(&tileB, tilesize * sizeof(double));
     for(int i = 0; i < tilesize * tilesize; i++){
         tileA[i] = a[i];
     }
