@@ -78,13 +78,10 @@ int main(int argc, char *argv[])
     dim3         dimBlock(BLOCK_SIZE, BLOCK_SIZE);
 
     /* Memory allocations and initializations of matrices */
-    double *a = (double *)malloc(sizeof(double) * N * N);
-    double *b = (double *)malloc(sizeof(double) * N * N);
-    double *c = (double *)malloc(sizeof(double) * N * N);
-
-    cudaHostRegister(a, sizeof(double) * N * N, cudaHostRegisterDefault);
-    cudaHostRegister(b, sizeof(double) * N * N, cudaHostRegisterDefault);
-    cudaHostRegister(c, sizeof(double) * N * N, cudaHostRegisterDefault);
+    double *a, *b, *c;
+    cudaMallocHost((void**)&a, sizeof(double) * N * N);
+    cudaMallocHost((void**)&b, sizeof(double) * N * N);
+    cudaMallocHost((void**)&c, sizeof(double) * N * N);
 
 
     double *flopcount;
