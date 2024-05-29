@@ -101,10 +101,13 @@ int main(int argc, char *argv[])
         b[i] = cos(i);
         c[i] = 0.0;
     }
+    printf("byeah before cpy\n");
     // Copy initial values to GPUs
     cudaMemcpy(d_a, a, sizeof(double) * N * N, cudaMemcpyHostToDevice);
     cudaMemcpy(d_b, b, sizeof(double) * N * N, cudaMemcpyHostToDevice);
     cudaMemcpy(d_c, c, sizeof(double) * N * N, cudaMemcpyHostToDevice);
+
+    printf("byeah after cpy\n");
 
     using dsec = std::chrono::duration<double>;
     double gf  = 2.0 * (double)N * N * N * REP * 1.0e-9;
