@@ -60,6 +60,8 @@ int main(int argc, char *argv[])
     int device = 0;
     cudaSetDevice(device);
 
+    printf("TRUE? %d\n", cudaDeviceProp.pageableMemoryAccessUsesHostPageTables);
+
     if (argc < 2) {
         printf("For C(NxN) = A(NxN)* B(NxN), Matrix size value N must be provided !\n");
         exit(1);
