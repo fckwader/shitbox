@@ -38,6 +38,7 @@ __global__ void sharedTiledMM(double *__restrict__ a,
                               int N,
                               int REP)
 {
+    printf("Tilesize: %d\n", blockDim.x);
     __shared__ double test[4];
 }
 
