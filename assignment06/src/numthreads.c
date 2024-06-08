@@ -5,7 +5,7 @@ int main(){
 
     #pragma omp parallel
     {
-        printf("%d\n", OMP_GET_NUM_THREADS());
+        printf("%d\n", omp_get_num_threads());
     }
 
 
