@@ -96,7 +96,7 @@ int main(int argc, char* argv[])
 	int tc = 0;
     #pragma omp parallel
     if (omp_get_thread_num() == 0)
-        tc = omp_get_num_threads();
+        tc = 2; //omp_get_num_threads();
 
 	printf("Running %.1f K ping-pongs using %d different addresses for each pair from %d threads\n", (double) pings / 1000.0, addrs, tc);
 	printf("Threads: %d, Base addr: %p\n", tc, a);
