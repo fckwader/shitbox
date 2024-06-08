@@ -41,6 +41,7 @@ void bench(int tc, int t1, int t2, int pings, int* addr)
 
     #pragma omp parallel for
     for(int i = 0; i < tc; i++) {
+        printf("Thread %d running on core %d\n", tc, sched_getcpu());
         if (i == t1) {
             for(int c = 0; c < pings; c++) {
                 atomic_store_explicit(a, 1, memory_order_release);
