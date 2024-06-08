@@ -3,6 +3,7 @@
 #include <sys/time.h>
 #include <omp.h>
 #include <stdatomic.h>
+#include <sched.h>
 
 // -------------------------------------------------------------
 // Util functions
