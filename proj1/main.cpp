@@ -12,7 +12,7 @@ void printField(FLOAT *field, int nx)
 {
     for(int i = 0; i < nx; i++) {
         for(int j = 0; j < nx; j++){
-            printf("%.1f ", field[i*nx + j]);
+            printf(".%.0f ", field[i*nx + j] * 10);
         }
         printf("\n");
     }
