@@ -8,8 +8,15 @@
 #include "Multigrid.h"
 #include "ComputeError.h"
 
+void printField(FLOAT *field, int nx)
+{
+    printf("Size: %d\n", nx);
+}
+
 int main(int argc, char *argv[])
 {
+
+  //error handling for input args
   if (argc != 5)
   {
     std::cout << "ERROR main: Please call program by"
@@ -19,6 +26,7 @@ int main(int argc, char *argv[])
     return -1;
   }
 
+  //get args
   const unsigned int preSmoothing = (unsigned int)atoi(argv[1]);
   const unsigned int postSmoothing = (unsigned int)atoi(argv[2]);
   const unsigned int jacobiStepsCoarsestLevel = 1;
@@ -27,6 +35,7 @@ int main(int argc, char *argv[])
 
   // determine resolution
   const unsigned int nx = ((unsigned int)(1 << levels)) - 1;
+  printf("Dimension NX: %d\n", nx);
 
   // initialise fields and set boundary values
   FLOAT *field1 = new FLOAT[(nx + 2) * (nx + 2)];
@@ -55,6 +64,9 @@ int main(int argc, char *argv[])
     field2[i] = 0.0;
     rhs[i] = 0.0;
   }
+
+  printField(field1);
+
   setBoundary.iterate(field1);
   setBoundary.iterate(field2);
 
