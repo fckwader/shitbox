@@ -24,6 +24,7 @@ public:
     {
       field[x] = 0.0;
       field[x + (_nx + 2) * (_ny + 1)] = x * (_ny + 1) * _meshsize2;
+      printf("UL Setting %d to be %.1f\n", x + (_nx + 2) * (_ny + 1), x * (_ny + 1) * _meshsize2);
     }
 
     // init left and right boundary
@@ -31,6 +32,7 @@ public:
     {
       field[y * (_nx + 2)] = 0.0;
       field[y * (_nx + 2) + (_nx + 1)] = (_nx + 1) * y * _meshsize2;
+      printf("LR Setting %d to be %.1f\n", y * (_nx + 2) + (_nx + 1), (_nx + 1) * y * _meshsize2);
     }
   }
 
