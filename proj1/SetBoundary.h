@@ -6,6 +6,7 @@
 #define _SETBOUNDARY_H_
 
 #include "Definitions.h"
+#include <stdio.h>
 
 // set boundary conditions for function f(x,y) = x*y defined on unit square.
 class SetBoundary
