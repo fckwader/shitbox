@@ -10,7 +10,7 @@
 
 void printField(FLOAT *field, int nx)
 {
-    printf("Size: %d\n", nx);
+    printf("penis: %f\n", field[0][0]);
 }
 
 int main(int argc, char *argv[])
