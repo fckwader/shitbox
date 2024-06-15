@@ -16,6 +16,7 @@ void printField(FLOAT *field, int nx)
         }
         printf("\n");
     }
+    printf("\n");
 }
 
 int main(int argc, char *argv[])
@@ -74,6 +75,8 @@ int main(int argc, char *argv[])
 
   setBoundary.iterate(field1);
   setBoundary.iterate(field2);
+
+  printField(field1, nx);
 
   Multigrid multigrid(nx, nx);
   FLOAT *currentSolution = field1;
