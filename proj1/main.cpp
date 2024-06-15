@@ -10,9 +10,9 @@
 
 void printField(FLOAT *field, int nx)
 {
-    for(int i = 0; i < nx; i++) {
-        for(int j = 0; j < nx; j++){
-            printf("%.1f ", field[i*nx + j]);
+    for(int i = 0; i < nx + 2; i++) {
+        for(int j = 0; j < nx + 2; j++){
+            printf("%.1f ", field[i*(nx+2) + j]);
         }
         printf("\n");
     }
