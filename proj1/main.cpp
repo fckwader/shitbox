@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
     rhs[i] = 0.0;
   }
 
-  printField(field1);
+  printField(field1, nx);
 
   setBoundary.iterate(field1);
   setBoundary.iterate(field2);
