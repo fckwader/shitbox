@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 
   // determine resolution
   const unsigned int nx = ((unsigned int)(1 << levels)) - 1;
-  printf("Dimension NX: %d\n", nx);
+  printf("Dimension NX: %d, Levels: %d\n", nx, levels);
 
   // initialise fields and set boundary values
   FLOAT *field1 = new FLOAT[(nx + 2) * (nx + 2)];
