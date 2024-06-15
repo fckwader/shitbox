@@ -18,6 +18,7 @@ public:
 
   void iterate(FLOAT *const field) const
   {
+    printf("Iterating SetBoundary\n");
     unsigned int pos = 0;
 
     // init lower and upper boundary
