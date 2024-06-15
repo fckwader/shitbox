@@ -10,7 +10,12 @@
 
 void printField(FLOAT *field, int nx)
 {
-    printf("penis: %f\n", field[0]);
+    for(int i = 0; i < nx; i++) {
+        for(int j = 0; j < nx; j++){
+            printf("%f ", field[i*nx + j]);
+        }
+        printf("\n");
+    }
 }
 
 int main(int argc, char *argv[])
