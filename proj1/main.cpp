@@ -86,6 +86,7 @@ int main(int argc, char *argv[])
 
   for (unsigned int i = 0; i < multigridCycles; i++)
   {
+    printField(currentSolution, nx);
     // always work on the correct field (either field1 or field2);
     // this switch is required due to the Jacobi method
     if (currentSolution == field1)
