@@ -51,7 +51,7 @@ public:
       for (unsigned int x = 1; x < _nx + 1; x++)
       {
 
-        printf("Before: %.1f, ", writePtr[pos]);
+        printf("X: %d, Y: %d, Before: %.1f, ", x, y, writePtr[pos]);
 
         // do Jacobi update and write to writePtr
         writePtr[pos] = _RHS * rhsPtr[pos];
