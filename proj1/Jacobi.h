@@ -52,12 +52,15 @@ public:
       {
 
         printf("X: %d, Y: %d, Before: %.1f, ", x, y, writePtr[pos]);
-
         // do Jacobi update and write to writePtr
         writePtr[pos] = _RHS * rhsPtr[pos];
+        printf("Setting to RHS: %.1f, ", writePtr[pos]);
         writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
+        printf("+X: %.1f, ", writePtr[pos]);
         writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
+        printf("+Y: %.1f, ", writePtr[pos]);
 
+        //writeptr[pos] = 0.6
         printf("After: %.1f\n", writePtr[pos]);
         // update pos along x-axis
         pos++;
