@@ -51,17 +51,17 @@ public:
       for (unsigned int x = 1; x < _nx + 1; x++)
       {
 
-        printf("X: %d, Y: %d, _X: %d, _Y: %d, Before: %.1f, ", x, y, _X, _Y, writePtr[pos]);
+        printf("X: %d, Y: %d, _X: %d, _Y: %d, Before: %.2f, ", x, y, _X, _Y, writePtr[pos]);
         // do Jacobi update and write to writePtr
         writePtr[pos] = _RHS * rhsPtr[pos];
-        printf("Setting to RHS: %.1f, ", writePtr[pos]);
+        printf("Setting to RHS: %.2f, ", writePtr[pos]);
         writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
-        printf("+X: %.1f, ", writePtr[pos]);
+        printf("+X: %.2f, ", writePtr[pos]);
         writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
-        printf("+Y: %.1f, ", writePtr[pos]);
+        printf("+Y: %.2f, ", writePtr[pos]);
 
         //writeptr[pos] = 0.6
-        printf("After: %.1f\n", writePtr[pos]);
+        printf("After: %.2f\n", writePtr[pos]);
         // update pos along x-axis
         pos++;
       }
