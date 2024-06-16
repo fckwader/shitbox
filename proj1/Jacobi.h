@@ -8,8 +8,9 @@
 #include "Definitions.h"
 #include <stdio.h>
 
-void printField(FLOAT *field, int nx)
+void printField(FLOAT *field)
 {
+    int nx = 3;
     for(int i = 0; i < nx + 2; i++) {
         for(int j = 0; j < nx + 2; j++){
             printf("%.1f ", field[i*(nx+2) + j]);
@@ -31,7 +32,7 @@ public:
   void iterate(const FLOAT *const readField, FLOAT *const writeField, const FLOAT *const rhs) const
   {
   printf("PRINT IN JACOBI:\n");
-    printField(readField, 3);
+    printField(readField);
     // set pointers of 5-point stencil (only neighbour values) to very first inner grid point
     const FLOAT *readPtr_S = readField + 1;
     const FLOAT *readPtr_W = readField + (_nx + 2);
