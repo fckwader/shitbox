@@ -71,11 +71,13 @@ int main(int argc, char *argv[])
     rhs[i] = 0.0;
   }
 
+  printf("Before setting boundary:\n");
   printField(field1, nx);
 
   setBoundary.iterate(field1);
   setBoundary.iterate(field2);
 
+  printf("After setting boundary:\n");
   printField(field1, nx);
 
   Multigrid multigrid(nx, nx);
@@ -86,6 +88,7 @@ int main(int argc, char *argv[])
 
   for (unsigned int i = 0; i < multigridCycles; i++)
   {
+    printf("Before iteration %d:\n", i);
     printField(currentSolution, nx);
     // always work on the correct field (either field1 or field2);
     // this switch is required due to the Jacobi method
