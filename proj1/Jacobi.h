@@ -33,8 +33,7 @@ public:
   {
   printf("PRINT IN JACOBI:\n");
     printField(readField);
-  printf("RHS: \n");
-  printField(rhs);
+
     // set pointers of 5-point stencil (only neighbour values) to very first inner grid point
     const FLOAT *readPtr_S = readField + 1;
     const FLOAT *readPtr_W = readField + (_nx + 2);
