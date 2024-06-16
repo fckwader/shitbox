@@ -8,6 +8,18 @@
 #include "Definitions.h"
 #include <stdio.h>
 
+void printField(FLOAT *field, int nx)
+{
+    for(int i = 0; i < nx + 2; i++) {
+        for(int j = 0; j < nx + 2; j++){
+            printf("%.1f ", field[i*(nx+2) + j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+
 // carries out a jacobi step, reading from val and writing to _writeGrid.
 class Jacobi
 {
@@ -18,6 +30,8 @@ public:
 
   void iterate(const FLOAT *const readField, FLOAT *const writeField, const FLOAT *const rhs) const
   {
+  printf("PRINT IN JACOBI:\n");
+  printField(readField, _nx);
     // set pointers of 5-point stencil (only neighbour values) to very first inner grid point
     const FLOAT *readPtr_S = readField + 1;
     const FLOAT *readPtr_W = readField + (_nx + 2);
@@ -39,12 +53,9 @@ public:
         writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
         writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
 
-        printf("%.1f ", writePtr[pos]);
-
         // update pos along x-axis
         pos++;
       }
-      printf("\n");
 
       // update pos along y-axis; therefore just jump over the two boundary values
       pos += 2;

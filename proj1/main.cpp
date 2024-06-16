@@ -71,14 +71,12 @@ int main(int argc, char *argv[])
     rhs[i] = 0.0;
   }
 
-  printf("Before setting boundary:\n");
-  printField(field1, nx);
+
 
   setBoundary.iterate(field1);
   setBoundary.iterate(field2);
 
-  printf("After setting boundary:\n");
-  printField(field1, nx);
+
 
   Multigrid multigrid(nx, nx);
   FLOAT *currentSolution = field1;
@@ -88,8 +86,7 @@ int main(int argc, char *argv[])
 
   for (unsigned int i = 0; i < multigridCycles; i++)
   {
-    printf("Before iteration %d:\n", i);
-    printField(currentSolution, nx);
+
     // always work on the correct field (either field1 or field2);
     // this switch is required due to the Jacobi method
     if (currentSolution == field1)
@@ -104,8 +101,6 @@ int main(int argc, char *argv[])
           preSmoothing, postSmoothing, jacobiStepsCoarsestLevel,
           field2, field1, rhs);
     }
-    printf("After iteration %d:\n", i);
-    printField(currentSolution, nx);
     computeError.computePointwiseError(currentSolution);
     std::cout << "Iteration " << i << ", Max-error: " << computeError.getMaxError() << std::endl;
   }
