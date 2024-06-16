@@ -50,6 +50,7 @@ public:
     {
       for (unsigned int x = 1; x < _nx + 1; x++)
       {
+        printf("X: %d, Y: %d\n", x, y);
         // do Jacobi update and write to writePtr
         writePtr[pos] = _RHS * rhsPtr[pos];
         writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
