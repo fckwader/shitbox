@@ -104,7 +104,8 @@ int main(int argc, char *argv[])
           preSmoothing, postSmoothing, jacobiStepsCoarsestLevel,
           field2, field1, rhs);
     }
-
+    printf("After iteration %d:\n", i);
+    printField(currentSolution, nx);
     computeError.computePointwiseError(currentSolution);
     std::cout << "Iteration " << i << ", Max-error: " << computeError.getMaxError() << std::endl;
   }
