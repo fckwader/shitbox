@@ -6,6 +6,7 @@
 #define _JACOBI_H_
 
 #include "Definitions.h"
+#include <stdio.h>
 
 // carries out a jacobi step, reading from val and writing to _writeGrid.
 class Jacobi
