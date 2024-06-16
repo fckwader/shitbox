@@ -8,7 +8,7 @@
 #include "Definitions.h"
 #include <stdio.h>
 
-void printField(FLOAT *field)
+void printField(const FLOAT *field)
 {
     int nx = 3;
     for(int i = 0; i < nx + 2; i++) {
