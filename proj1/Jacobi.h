@@ -57,8 +57,11 @@ public:
                     writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
                     printf("%d ", pos);
                     pos++;
+                    if(tx >= _nx + 1){
+                        printf("SWOG");
+                    }
                 }
-                printf("Erm something\n");
+
                 printf("\n");
                 pos += _ny + 1;
                 pos -= (tilesize - 1);
