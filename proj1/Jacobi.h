@@ -55,6 +55,7 @@ public:
                     writePtr[pos] = _RHS * rhsPtr[pos];
                     writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
                     writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
+                    printf("%d ", pos);
                     pos++;
                 }
                 pos += _ny;
