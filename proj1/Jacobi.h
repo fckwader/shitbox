@@ -60,11 +60,10 @@ public:
                 pos += _ny;
                 pos -= (tilesize - 1);
             }
-
       }
+      pos += 2;
 
     }
-    //todo pos += 2
 
 private:
   // returns the prefactor for the Jacobi stencil in x-direction
