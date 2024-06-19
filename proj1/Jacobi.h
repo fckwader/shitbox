@@ -60,9 +60,10 @@ public:
                 pos += _ny;
                 pos -= (tilesize - 1);
             }
+            pos -= 3 * _ny;
+            pos += 1;
       }
       pos += 2;
-
     }
 
 private:
