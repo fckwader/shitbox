@@ -59,8 +59,8 @@ public:
                     pos++;
                 }
                 printf("\n");
-                pos += _ny;
-                pos -= (tilesize);
+                pos += _ny + 1;
+                pos -= (tilesize - 1);
             }
             pos -= _ny;
             pos += (tilesize - 1);
