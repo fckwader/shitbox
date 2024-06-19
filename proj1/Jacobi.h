@@ -66,6 +66,10 @@ public:
                 pos += _ny + 2;
                 pos -= tilesize;
                 count++;
+
+                if(ty == _ny){
+                    pos += 1;
+                }
             }
             printf("Count: %d\n", count);
             printf("Old: %d ", pos);
