@@ -58,6 +58,7 @@ public:
                     printf("%d ", pos);
                     pos++;
                 }
+                printf("\n");
                 pos += _ny;
                 pos -= (tilesize - 1);
             }
