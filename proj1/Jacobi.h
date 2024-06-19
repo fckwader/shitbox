@@ -56,6 +56,7 @@ public:
             writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
             pos++;
         }
+        printf("\n");
         pos += 2;
       }
 
