@@ -53,7 +53,7 @@ public:
       {
 
         for(unsigned int ty = y; ty < y + tilesize && ty < _ny + 1; ty++){
-            for(unsigned tx = x; tx < x + tilesize && tx < _nx + 1; tx++){
+            for(unsigned int tx = x; tx < x + tilesize && tx < _nx + 1; tx++){
                     writePtr[pos] = _RHS * rhsPtr[pos];
                     writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
                     writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
