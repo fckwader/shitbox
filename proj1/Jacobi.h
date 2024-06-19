@@ -50,6 +50,7 @@ public:
     {
         for (unsigned int x = 1; x < _nx + 1; x+=tilesize)
         {
+            int count = 0;
             for(unsigned int ty = y; ty < y + tilesize && ty < _ny + 1; ty++){
                 for(unsigned int tx = x; tx < x + tilesize && tx < _nx + 1; tx++){
                     writePtr[pos] = _RHS * rhsPtr[pos];
@@ -65,10 +66,12 @@ public:
                 printf("\n");
                 pos += _ny + 1;
                 pos -= (tilesize - 1);
+                count++;
             }
             pos -= _ny;
             pos += (tilesize - 1);
-            pos -= tilesize * _ny;
+            pos -= count * _ny;
+            count = 0;
       }
       pos += tilesize * _ny;
     }
