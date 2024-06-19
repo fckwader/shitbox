@@ -59,7 +59,7 @@ public:
                     pos++;
                 }
                 printf("\n");
-                pos += _ny + 2;
+                pos += _ny + 1;
                 pos -= (tilesize - 1);
             }
             pos -= 3 * _ny + 6;
