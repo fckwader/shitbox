@@ -7,6 +7,7 @@
 
 #include "Multigrid.h"
 #include "ComputeError.h"
+#include <time.h>
 
 
 
@@ -75,6 +76,7 @@ int main(int argc, char *argv[])
   ComputeError computeError(nx, nx);
   const VTKPlotter vtkPlotter;
 
+  clock_t start = clock();
   for (unsigned int i = 0; i < multigridCycles; i++)
   {
 
@@ -99,6 +101,9 @@ int main(int argc, char *argv[])
   // commented out: result not interesting here
   //computeError.plotPointwiseError();
   //vtkPlotter.writeFieldData(currentSolution,nx,nx,"result.vtk");
+  clock_t end = clock();
+  float seconds = (float)(end - start) / CLOCKS_PER_SEC;
+  printf("Whole thing took %.2f seconds\n", seconds);
 
   return 0;
 }
