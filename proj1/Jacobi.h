@@ -64,14 +64,9 @@ public:
             pos += 2;
 
 
-        // do Jacobi update and write to writePtr
 
-
-        // update pos along x-axis
 
       }
-
-      // update pos along y-axis; therefore just jump over the two boundary values
 
     }
 
