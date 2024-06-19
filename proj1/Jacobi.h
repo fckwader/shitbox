@@ -73,7 +73,7 @@ public:
 
             pos += tilesize;
             printf("Mid: %d ", pos);
-            pos -= (count + 1) * (_ny + 2);
+            pos -= (count) * (_ny + 2);
             count = 0;
             printf("new: %d\n", pos);
       }
