@@ -71,9 +71,9 @@ public:
             printf("Count: %d\n", count);
             printf("Old: %d ", pos);
 
-            pos += (tilesize - 1);
+            pos += tilesize;
             printf("Mid: %d ", pos);
-            pos -= (count + 1) * _ny;
+            pos -= (count + 1) * (_ny + 2);
             count = 0;
             printf("new: %d\n", pos);
       }
