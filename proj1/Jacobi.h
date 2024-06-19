@@ -58,7 +58,7 @@ public:
                     printf("%d ", pos);
                     pos++;
                     if(tx == _nx){
-                        pos+=1;
+                        pos+=2;
                     }
                 }
 
