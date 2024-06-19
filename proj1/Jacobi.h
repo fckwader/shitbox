@@ -32,7 +32,7 @@ public:
   void iterate(const FLOAT *const readField, FLOAT *const writeField, const FLOAT *const rhs) const
   {
 
-    printf("_nx: %d, _ny: %d, _X: %d, _Y: %d", _nx, _ny, _X, _Y);
+    printf("_nx: %d, _ny: %d, _X: %f, _Y: %f", _nx, _ny, _X, _Y);
 
     // set pointers of 5-point stencil (only neighbour values) to very first inner grid point
     const FLOAT *readPtr_S = readField + 1;
