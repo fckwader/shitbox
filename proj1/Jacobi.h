@@ -31,6 +31,7 @@ public:
 
   void iterate(const FLOAT *const readField, FLOAT *const writeField, const FLOAT *const rhs) const
   {
+    printField(writeField, _nx);
     // set pointers of 5-point stencil (only neighbour values) to very first inner grid point
     const FLOAT *readPtr_S = readField + 1;
     const FLOAT *readPtr_W = readField + (_nx + 2);
@@ -55,23 +56,26 @@ public:
                     writePtr[pos] = _RHS * rhsPtr[pos];
                     writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
                     writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
+                    printf("%d ", pos);
                     pos++;
                     if(tx == _nx){
                         pos++;
                     }
                 }
 
-
+                printf("\n");
                 pos += _ny + 2;
                 pos -= tilesize;
                 count++;
             }
-
+            printf("Count: %d\n", count);
+            printf("Old: %d ", pos);
 
             pos += tilesize;
+            printf("Mid: %d ", pos);
             pos -= (count) * (_ny + 2);
             count = 0;
-
+            printf("new: %d\n", pos);
       }
       pos += tilesize * _ny;
     }
