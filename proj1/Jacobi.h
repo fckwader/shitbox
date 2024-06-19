@@ -47,22 +47,22 @@ public:
     unsigned int tilesize = 4;
     unsigned int pos = 0;
     #pragma omp parallel for collapse(2)
-    for (unsigned int y = 1; y < _ny + 1; y+=tilesize)
+    for (unsigned int y = 1; y < _ny + 1; y+=1)
     {
-      for (unsigned int x = 1; x < _nx + 1; x+=tilesize)
+      for (unsigned int x = 1; x < _nx + 1; x+=1)
       {
 
-        for(unsigned int ty = y; ty < y + tilesize && ty < _ny + 1; ty++){
-            for(unsigned int tx = x; tx < x + tilesize && tx < _nx + 1; tx++){
-                    printf("%d ", pos);
-                    writePtr[pos] = _RHS * rhsPtr[pos];
-                    writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
-                    writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
-                    pos++;
-            }
-            printf("\n");
-            pos += tilesize +1;
-        }
+
+
+            printf("%d ", pos);
+            writePtr[pos] = _RHS * rhsPtr[pos];
+            writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
+            writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
+            pos++;
+}
+
+            pos += 2;
+
 
         // do Jacobi update and write to writePtr
 
@@ -74,7 +74,7 @@ public:
       // update pos along y-axis; therefore just jump over the two boundary values
 
     }
-  }
+
 
 private:
   // returns the prefactor for the Jacobi stencil in x-direction
