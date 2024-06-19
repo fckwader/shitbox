@@ -31,7 +31,7 @@ int main()
 
             for(int ti = i; ti < i + tilesize && ti < n; ti++){
                 for(int tj = j; tj < j + tilesize && tj< n; tj++){
-                        m[ti*n + tj += 15];
+                        m[ti*n + tj] += 15;
                 }
             }
 
