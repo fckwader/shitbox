@@ -31,6 +31,10 @@ public:
 
   void iterate(const FLOAT *const readField, FLOAT *const writeField, const FLOAT *const rhs) const
   {
+    printf("READFIELD: \n");
+    printField(readField);
+    printf("WRITEFIELD: \n");
+    printField(writeField);
 
     // set pointers of 5-point stencil (only neighbour values) to very first inner grid point
     const FLOAT *readPtr_S = readField + 1;
