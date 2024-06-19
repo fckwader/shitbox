@@ -72,7 +72,7 @@ public:
             pos -= tilesize * _ny;
             printf("%d.\n", pos);
       }
-      printf("Fuck nigga\n");
+      pos += tilesize * _ny;
     }
     }
 
