@@ -4,7 +4,7 @@
 
 int main()
 {
-    int n = 32768 * 4;
+    int n = 32768 * 2;
 
     double *m = (double *) malloc(n * n * sizeof(double));
 
