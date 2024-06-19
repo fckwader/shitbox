@@ -76,7 +76,9 @@ public:
             count = 0;
             printf("new: %d\n", pos);
       }
-      pos += tilesize * _ny;
+      printf("\n penis old: %d ", pos);
+      pos += tilesize * (_ny + 2);
+      printf("new: %d\n", pos);
     }
     }
 
