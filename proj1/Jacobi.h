@@ -67,10 +67,6 @@ public:
                 pos -= tilesize;
                 count++;
 
-                if(ty == _ny){
-                    printf("yeah like rn\n");
-                    pos += 1;
-                }
             }
             printf("Count: %d\n", count);
             printf("Old: %d ", pos);
@@ -82,7 +78,7 @@ public:
             printf("new: %d\n", pos);
       }
       printf("\n penis old: %d ", pos);
-      pos += tilesize * (_ny + 2);
+      pos += tilesize * (_ny + 2) + 1;
       printf("new: %d\n", pos);
     }
     }
