@@ -68,6 +68,7 @@ public:
                 pos -= (tilesize - 1);
                 count++;
             }
+            printf("Swag\n");
             pos -= _ny;
             pos += (tilesize - 1);
             pos -= count * _ny;
