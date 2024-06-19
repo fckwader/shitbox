@@ -59,8 +59,10 @@ public:
                     pos++;
                 }
                 printf("\n");
+                printf("Jump from %d to ", pos);
                 pos += _ny + 1;
                 pos -= (tilesize - 1);
+                printf("%d.\n", pos);
             }
             pos -= _ny;
             pos += (tilesize - 1);
