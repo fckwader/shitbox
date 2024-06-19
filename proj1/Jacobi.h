@@ -60,7 +60,7 @@ public:
                     writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
                     pos++;
             }
-            pos += tilesize * 2;
+            pos += tilesize +1;
         }
 
         // do Jacobi update and write to writePtr
