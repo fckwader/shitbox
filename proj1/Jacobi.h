@@ -48,15 +48,15 @@ public:
     #pragma omp parallel for collapse(2)
     for (unsigned int y = 1; y < _ny + 1; y+=1)
     {
-        for (unsigned int x = 1; x < _nx + 1; x+=1)
+        for (unsigned int x = 1; x < _nx + 1; x+=tilesize)
         {
-            printf("%d ", pos);
-            writePtr[pos] = _RHS * rhsPtr[pos];
-            writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
-            writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
-            pos++;
+            for(unsigned int tx = x; tx < x + tilesize && tx < _nx + 1; tx++){
+                writePtr[pos] = _RHS * rhsPtr[pos];
+                writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
+                writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
+                pos++;
+            }
         }
-        printf("\n");
         pos += 2;
       }
 
