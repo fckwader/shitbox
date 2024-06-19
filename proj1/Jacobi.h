@@ -70,6 +70,7 @@ public:
             pos -= tilesize * _ny;
             printf("%d.\n", pos);
       }
+      printf("Xloop done\n");
       pos += 2;
     }
     }
