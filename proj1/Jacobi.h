@@ -68,7 +68,7 @@ public:
             pos -= tilesize * _ny;
             printf("%d.\n", pos);
       }
-      pos += 2;
+      pos += 3;
       pos += tilesize * _ny;
     }
     }
