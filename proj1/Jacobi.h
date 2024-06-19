@@ -44,7 +44,7 @@ public:
     FLOAT *writePtr = writeField + (_nx + 3);
 
     // use pos to advance access through the whole grid without any expensive index computations
-    unsigned int tilesize = 8;
+    unsigned int tilesize = 4;
     unsigned int pos = 0;
     #pragma omp parallel for collapse(2)
     for (unsigned int y = 1; y < _ny + 1; y+=tilesize)
@@ -59,7 +59,7 @@ public:
                     writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
                     pos++;
             }
-            pos += tilesize + 2;
+            pos += tilesize * 2;
         }
 
         // do Jacobi update and write to writePtr
