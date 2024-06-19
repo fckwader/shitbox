@@ -45,6 +45,7 @@ public:
     // use pos to advance access through the whole grid without any expensive index computations
     unsigned int tilesize = 4;
     unsigned int pos = 0;
+    printf("NX: %d, NY: %d\n", _nx, _ny);
     #pragma omp parallel for collapse(2)
     for (unsigned int y = 1; y < _ny + 1; y+=tilesize)
     {
