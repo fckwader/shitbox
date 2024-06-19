@@ -68,9 +68,7 @@ public:
             }
             pos -= _ny;
             pos += (tilesize - 1);
-            printf("Im at %d, now ima go to ", pos);
             pos -= tilesize * _ny;
-            printf("%d.\n", pos);
       }
       pos += tilesize * _ny;
     }
