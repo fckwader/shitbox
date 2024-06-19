@@ -68,7 +68,7 @@ public:
                 pos -= (tilesize - 1);
                 count++;
             }
-            printf("Count: %d\n". count);
+            printf("Count: %d\n", count);
 
             pos += (tilesize - 1);
             pos -= (count + 1) * _ny;
