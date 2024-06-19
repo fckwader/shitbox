@@ -20,7 +20,7 @@ int main()
         }
     }
     clock_t end = clock();
-    float seconds = (float)(end - start) / CLOCKS_PER_SEC;
+    float seconds = (float) (end - start) / CLOCKS_PER_SEC;
     printf("Regular style took %.2f seconds\n", seconds);
 
     int tilesize = 8;
