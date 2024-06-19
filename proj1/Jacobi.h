@@ -62,7 +62,7 @@ public:
                 pos += _ny + 1;
                 pos -= (tilesize - 1);
             }
-            pos -= 3 * _ny + 6;
+            pos -= 3 * _ny + 3;
             pos += 1;
       }
       pos += 2;
