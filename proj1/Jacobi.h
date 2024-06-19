@@ -68,6 +68,7 @@ public:
                 count++;
 
                 if(ty == _ny){
+                    printf("yeah like rn\n");
                     pos += 1;
                 }
             }
