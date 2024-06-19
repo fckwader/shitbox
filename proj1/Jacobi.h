@@ -8,9 +8,9 @@
 #include "Definitions.h"
 #include <stdio.h>
 
-void printField(const FLOAT *field)
+void printField(const FLOAT *field, const int nx)
 {
-    int nx = 3;
+
     for(int i = 0; i < nx + 2; i++) {
         for(int j = 0; j < nx + 2; j++){
             printf("%.3f ", field[i*(nx+2) + j]);
@@ -31,7 +31,7 @@ public:
 
   void iterate(const FLOAT *const readField, FLOAT *const writeField, const FLOAT *const rhs) const
   {
-
+    printField(readField, _nx);
 
     // set pointers of 5-point stencil (only neighbour values) to very first inner grid point
     const FLOAT *readPtr_S = readField + 1;
