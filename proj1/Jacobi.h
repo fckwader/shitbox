@@ -57,9 +57,6 @@ public:
                     writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
                     printf("%d ", pos);
                     pos++;
-                    if(tx == _nx){
-                        pos+=2;
-                    }
                 }
 
                 printf("\n");
