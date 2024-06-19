@@ -57,7 +57,7 @@ public:
                     writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
                     printf("%d ", pos);
                     pos++;
-                    if(tx >= _nx + 1){
+                    if(tx == _nx){
                         printf("SWOG");
                     }
                 }
