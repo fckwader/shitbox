@@ -42,7 +42,7 @@ public:
     FLOAT *writePtr = writeField + (_nx + 3);
 
     // use pos to advance access through the whole grid without any expensive index computations
-    unsigned int tilesize = 8;
+    unsigned int tilesize = 4;
     unsigned int pos = 0;
     #pragma omp parallel for collapse(2)
     for (unsigned int y = 1; y < _ny + 1; y+=tilesize)
@@ -55,31 +55,31 @@ public:
                     writePtr[pos] = _RHS * rhsPtr[pos];
                     writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
                     writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
-                    printf("%d ", pos);
+                    //printf("%d ", pos);
                     pos++;
                     if(tx == _nx){
                         pos+=1;
                     }
                 }
 
-                printf("\n");
+                //printf("\n");
                 pos += _ny + 2;
                 pos -= tilesize;
                 count++;
 
             }
-            printf("Count: %d\n", count);
-            printf("Old: %d ", pos);
+            //printf("Count: %d\n", count);
+            //printf("Old: %d ", pos);
 
             pos += tilesize;
-            printf("Mid: %d ", pos);
+            //printf("Mid: %d ", pos);
             pos -= (count) * (_ny + 2);
             count = 0;
-            printf("new: %d\n", pos);
+            //printf("new: %d\n", pos);
       }
-      printf("\n penis old: %d ", pos);
+      //printf("\n full old: %d ", pos);
       pos += (tilesize - 1) * (_ny + 2) + 1;
-      printf("new: %d\n", pos);
+      //printf("new: %d\n", pos);
     }
     }
 
