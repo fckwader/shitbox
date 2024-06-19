@@ -5,6 +5,7 @@
 int main()
 {
     int n = 45000;
+    int rep = 10;
 
     double *m = (double *) malloc(n * n * sizeof(double));
 
@@ -14,9 +15,11 @@ int main()
 
     //regular style
     clock_t start = clock();
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            m[i*n + j] += 15;
+    for(int r = 0; r < rep; r++){
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                m[i*n + j] += 15;
+            }
         }
     }
     clock_t end = clock();
@@ -26,16 +29,17 @@ int main()
     int tilesize = 8;
 
     start = clock();
-    for(int i = 0; i < n; i += tilesize){
-        for(int j = 0; j < n; j += tilesize){
+    for(int r = 0; r < rep; r++){
+        for(int i = 0; i < n; i += tilesize){
+            for(int j = 0; j < n; j += tilesize){
 
-            for(int ti = i; ti < i + tilesize && ti < n; ti++){
-                for(int tj = j; tj < j + tilesize && tj< n; tj++){
-                        m[ti*n + tj] += 15;
+                for(int ti = i; ti < i + tilesize && ti < n; ti++){
+                    for(int tj = j; tj < j + tilesize && tj< n; tj++){
+                            m[ti*n + tj] += 15;
+                    }
                 }
+
             }
-
-
         }
     }
     end = clock();
