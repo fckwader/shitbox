@@ -32,7 +32,6 @@ public:
   void iterate(const FLOAT *const readField, FLOAT *const writeField, const FLOAT *const rhs) const
   {
 
-    printf("_nx: %d, _ny: %d, _X: %f, _Y: %f\n", _nx, _ny, _X, _Y);
 
     // set pointers of 5-point stencil (only neighbour values) to very first inner grid point
     const FLOAT *readPtr_S = readField + 1;
@@ -64,7 +63,6 @@ public:
       // update pos along y-axis; therefore just jump over the two boundary values
       pos += 2;
     }
-    printField(writeField);
   }
 
 private:
