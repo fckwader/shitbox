@@ -61,7 +61,7 @@ public:
             pos++;
         }
             printf("\n");
-            pos += 2;
+            pos += 1;
 
 
 
