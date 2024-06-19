@@ -69,10 +69,11 @@ public:
                 count++;
             }
             printf("Count: %d\n", count);
-
+            printf("Old: %d ", pos);
             pos += (tilesize - 1);
             pos -= (count + 1) * _ny;
             count = 0;
+            printf("new: %d\n", pos);
       }
       pos += tilesize * _ny;
     }
