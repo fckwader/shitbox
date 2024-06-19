@@ -65,6 +65,7 @@ public:
       }
       pos += 2;
     }
+    }
 
 private:
   // returns the prefactor for the Jacobi stencil in x-direction
