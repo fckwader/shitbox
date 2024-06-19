@@ -58,6 +58,7 @@ public:
                     printf("%d ", pos);
                     pos++;
                 }
+                printf("Erm something\n");
                 printf("\n");
                 pos += _ny + 1;
                 pos -= (tilesize - 1);
