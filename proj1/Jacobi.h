@@ -59,7 +59,7 @@ public:
     }
     clock_t end = clock();
     float seconds = (float) (end - start) / CLOCKS_PER_SEC;
-    printf("Iterate took %.2f seconds", seconds);
+    printf("Iterate took %.2f seconds\n", seconds);
   }
 
 private:
