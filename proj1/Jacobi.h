@@ -45,13 +45,12 @@ public:
 
     // use pos to advance access through the whole grid without any expensive index computations
     unsigned int pos = 0;
-    #pragma omp parallel for
+    #pragma omp parallel for collapse(2)
     for (unsigned int y = 0; y < _ny; y++)
     {
-      unsigned int base = y * (_ny + 2);
-      #pragma omp unroll
       for (unsigned int x = 0; x < _nx; x++)
       {
+                unsigned int base = y * (_ny + 2);
                 unsigned int pos = base + x;
                 writePtr[pos] = _RHS * rhsPtr[pos];
                 writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
