@@ -61,7 +61,7 @@ public:
         }
       }
       // update pos along y-axis; therefore just jump over the two boundary values
-       pos += (_nx + 2);
+       pos += 2;
     }
   }
 
