@@ -62,7 +62,7 @@ public:
         printf("\n");
 
         if(_nx - x <= ts){
-            pos += 1;
+            pos += 2;
         }
       }
     }
