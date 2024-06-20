@@ -31,7 +31,6 @@ public:
 
   void iterate(const FLOAT *const readField, FLOAT *const writeField, const FLOAT *const rhs) const
   {
-    printf("nx ny: %d %d\n", _nx, _ny);
     // set pointers of 5-point stencil (only neighbour values) to very first inner grid point
     const FLOAT *readPtr_S = readField + 1;
     const FLOAT *readPtr_W = readField + (_nx + 2);
@@ -43,23 +42,24 @@ public:
     FLOAT *writePtr = writeField + (_nx + 3);
 
     // use pos to advance access through the whole grid without any expensive index computations
-    unsigned int pos = 0;
+
     for (unsigned int y = 0; y < _ny; y++)
     {
       for (unsigned int x = 0; x < _nx; x++)
       {
+        unsigned int pos = x + y * (_nx + 2);
         // do Jacobi update and write to writePtr
         writePtr[pos] = _RHS * rhsPtr[pos];
         writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
         writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
-        //printf("p%d x%d y%d\n", pos, x, y);
+        printf("p%d x%d y%d\n", pos, x, y);
 
         // update pos along x-axis
-        pos++;
+
       }
         printf("\n");
       // update pos along y-axis; therefore just jump over the two boundary values
-      pos += 2;
+
     }
   }
 
