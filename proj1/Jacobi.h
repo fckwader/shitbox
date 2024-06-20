@@ -43,9 +43,9 @@ public:
 
     // use pos to advance access through the whole grid without any expensive index computations
     unsigned int pos = 0;
-    for (unsigned int y = 1; y < _ny + 1; y++)
+    for (unsigned int y = 0; y < _ny; y++)
     {
-      for (unsigned int x = 1; x < _nx + 1; x++)
+      for (unsigned int x = 0; x < _nx; x++)
       {
         // do Jacobi update and write to writePtr
         writePtr[pos] = _RHS * rhsPtr[pos];
