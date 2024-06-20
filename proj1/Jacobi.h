@@ -50,6 +50,7 @@ public:
       for (unsigned int x = 0; x < _nx; x+=ts)
       {
         unsigned int count = 0;
+        #pragma omp parallel for
         for(int tx = 0; tx < ts && tx + x < _nx; tx++){
                 // do Jacobi update and write to writePtr
                 //printf("X%d Y%d P%d\n", tx, y, pos);
