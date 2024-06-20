@@ -43,6 +43,7 @@ public:
 
     // use pos to advance access through the whole grid without any expensive index computations
 
+    #pragma omp parallel for
     for (unsigned int y = 0; y < _ny; y++)
     {
       for (unsigned int x = 0; x < _nx; x++)
@@ -52,10 +53,6 @@ public:
         writePtr[pos] = _RHS * rhsPtr[pos];
         writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
         writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
-        printf("p%d x%d y%d\n", pos, x, y);
-
-        // update pos along x-axis
-
       }
         printf("\n");
       // update pos along y-axis; therefore just jump over the two boundary values
