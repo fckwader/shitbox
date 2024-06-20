@@ -58,8 +58,11 @@ public:
                 pos++;
         }
 
-
+        if(_nx - x <= ts){
+            printf("A");
+        }
       }
+      printf("B\n");
       // update pos along y-axis; therefore just jump over the two boundary values
        pos += 2;
     }
