@@ -49,15 +49,16 @@ public:
     {
       for (unsigned int x = 0; x < _nx; x+=ts)
       {
-        #pragma omp unroll
-        for(int tx = x; tx < x + ts && tx < _nx; tx++){
+        for(int tx = 0; tx < ts && tx + x < _nx; tx++){
                 // do Jacobi update and write to writePtr
                 //printf("X%d Y%d P%d\n", tx, y, pos);
-                writePtr[pos] = _RHS * rhsPtr[pos];
-                writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
-                writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
-                pos++;
+                unsigned int tpos = pos + tx;
+                writePtr[tpos] = _RHS * rhsPtr[tpos];
+                writePtr[tpos] += _X * (readPtr_W[tpos] + readPtr_E[tpos]);
+                writePtr[tpos] += _Y * (readPtr_S[tpos] + readPtr_N[tpos]);
+
         }
+        pos += ts;
 
         if(_nx - x <= ts){
             pos += 2;
