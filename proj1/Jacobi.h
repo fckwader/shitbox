@@ -7,6 +7,7 @@
 
 #include "Definitions.h"
 #include <stdio.h>
+#include <time.h>
 
 void printField(const FLOAT *field, const int nx)
 {
@@ -31,6 +32,7 @@ public:
 
   void iterate(const FLOAT *const readField, FLOAT *const writeField, const FLOAT *const rhs) const
   {
+
     // set pointers of 5-point stencil (only neighbour values) to very first inner grid point
     const FLOAT *readPtr_S = readField + 1;
     const FLOAT *readPtr_W = readField + (_nx + 2);
@@ -42,7 +44,7 @@ public:
     FLOAT *writePtr = writeField + (_nx + 3);
 
     // use pos to advance access through the whole grid without any expensive index computations
-
+    clock_t start = clock();
     unsigned int pos = 0;
     #pragma omp parallel for
     for (unsigned int y = 0; y < _ny; y++)
@@ -55,6 +57,9 @@ public:
                 writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
       }
     }
+    clock_t end = clock();
+    float seconds = (float) (end - start) / CLOCKS_PER_SEC;
+    printf("Iterate took %.2f seconds", seconds);
   }
 
 private:
