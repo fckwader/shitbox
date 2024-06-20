@@ -60,11 +60,8 @@ public:
         }
         pos += ts;
         printf("\n");
-
-        if(_nx - x <= ts){
-            pos += 2;
-        }
       }
+      pos += 2;
     }
   }
 
