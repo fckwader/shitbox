@@ -43,7 +43,7 @@ public:
 
     // use pos to advance access through the whole grid without any expensive index computations
 
-    unsigned int ts = 8;
+    unsigned int ts = 4;
     unsigned int pos = 0;
     for (unsigned int y = 0; y < _ny; y++)
     {
