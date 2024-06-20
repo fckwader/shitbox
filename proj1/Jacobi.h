@@ -46,7 +46,7 @@ public:
     #pragma omp parallel for
     for (unsigned int y = 0; y < _ny; y++)
     {
-      #pragma omp parallel for
+      #pragma omp unroll
       for (unsigned int x = 0; x < _nx; x++)
       {
         unsigned int pos = x + y * (_nx + 2);
