@@ -45,9 +45,9 @@ public:
 
     unsigned int ts = 32;
     unsigned int pos = 0;
+    #pragma omp parallel for
     for (unsigned int y = 0; y < _ny; y++)
     {
-      #pragma omp parallel for
       for (unsigned int x = 0; x < _nx; x+=ts)
       {
         #pragma omp unroll
@@ -59,6 +59,11 @@ public:
                 writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
                 pos++;
         }
+        if(_nx - x <= ts){
+            printf("yeah");
+        }
+        }
+        printf("yo\n");
       }
       // update pos along y-axis; therefore just jump over the two boundary values
        pos += 2;
