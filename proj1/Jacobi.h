@@ -59,16 +59,13 @@ public:
                 writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
                 pos++;
         }
-        if(_nx - x <= ts){
-            printf("yeah");
-        }
-        }
-        printf("yo\n");
-        pos += 2;
+
+
       }
       // update pos along y-axis; therefore just jump over the two boundary values
+       pos += 2;
     }
-
+  }
 
 private:
   // returns the prefactor for the Jacobi stencil in x-direction
