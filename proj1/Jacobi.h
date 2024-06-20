@@ -49,16 +49,19 @@ public:
     {
       for (unsigned int x = 0; x < _nx; x+=ts)
       {
+        unsigned int count = 0;
         for(int tx = 0; tx < ts && tx + x < _nx; tx++){
                 // do Jacobi update and write to writePtr
                 //printf("X%d Y%d P%d\n", tx, y, pos);
                 unsigned int tpos = pos + tx;
+                count++;
                 printf("%d ", tpos);
                 writePtr[tpos] = _RHS * rhsPtr[tpos];
                 writePtr[tpos] += _X * (readPtr_W[tpos] + readPtr_E[tpos]);
                 writePtr[tpos] += _Y * (readPtr_S[tpos] + readPtr_N[tpos]);
         }
-        pos += ts;
+        pos += count;
+        count = 0;
         printf("\n");
       }
       pos += 2;
