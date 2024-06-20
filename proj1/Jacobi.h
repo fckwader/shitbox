@@ -54,7 +54,6 @@ public:
         writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
         writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
       }
-        printf("\n");
       // update pos along y-axis; therefore just jump over the two boundary values
 
     }
