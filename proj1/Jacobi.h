@@ -49,6 +49,7 @@ public:
     {
       for (unsigned int x = 0; x < _nx; x+=ts)
       {
+        #pragma omp unroll
         for(int tx = x; tx < x + ts && tx < _nx; tx++){
                 unsigned int pos = tx + y * (_nx + 2);
                 // do Jacobi update and write to writePtr
