@@ -48,14 +48,11 @@ public:
     {
       for (unsigned int x = 0; x < _nx; x++)
       {
-                // do Jacobi update and write to writePtr
-                //printf("X%d Y%d P%d\n", tx, y, pos);
+                unsigned int pos = y * _ny + x;
                 writePtr[pos] = _RHS * rhsPtr[pos];
                 writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
                 writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
-                pos++;
       }
-      pos += 2;
     }
   }
 
