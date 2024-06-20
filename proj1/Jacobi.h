@@ -54,12 +54,8 @@ public:
                 writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
                 writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
                 pos++;
-
-
-        if(_nx - x <= ts){
-            pos += 2;
-        }
       }
+      pos += 2;
     }
   }
 
