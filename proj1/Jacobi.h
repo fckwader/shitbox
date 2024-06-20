@@ -64,12 +64,11 @@ public:
         }
         }
         printf("yo\n");
+        pos += 2;
       }
       // update pos along y-axis; therefore just jump over the two boundary values
-       pos += 2;
     }
-    }
-  }
+
 
 private:
   // returns the prefactor for the Jacobi stencil in x-direction
