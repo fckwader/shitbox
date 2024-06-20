@@ -51,11 +51,12 @@ public:
         writePtr[pos] = _RHS * rhsPtr[pos];
         writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
         writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
+        printf("%d ", pos);
 
         // update pos along x-axis
         pos++;
       }
-
+        printf("\n");
       // update pos along y-axis; therefore just jump over the two boundary values
       pos += 2;
     }
