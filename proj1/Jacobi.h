@@ -45,7 +45,6 @@ public:
 
     unsigned int ts = 32;
     unsigned int pos = 0;
-    #pragma omp parallel for
     for (unsigned int y = 0; y < _ny; y++)
     {
       for (unsigned int x = 0; x < _nx; x+=ts)
