@@ -44,6 +44,7 @@ public:
     // use pos to advance access through the whole grid without any expensive index computations
 
     unsigned int ts = 32;
+    unsigned int pos = 0;
     #pragma omp parallel for
     for (unsigned int y = 0; y < _ny; y++)
     {
@@ -51,15 +52,15 @@ public:
       {
         #pragma omp unroll
         for(int tx = x; tx < x + ts && tx < _nx; tx++){
-                unsigned int pos = tx + y * (_nx + 2);
                 // do Jacobi update and write to writePtr
                 writePtr[pos] = _RHS * rhsPtr[pos];
                 writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
                 writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
+                pos++;
         }
       }
       // update pos along y-axis; therefore just jump over the two boundary values
-
+       pos += (_nx + 2);
     }
   }
 
