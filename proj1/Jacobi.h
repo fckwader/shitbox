@@ -49,6 +49,7 @@ public:
     for (unsigned int y = 0; y < _ny; y++)
     {
       unsigned int base = y * (_ny + 2);
+      #pragma omp unroll
       for (unsigned int x = 0; x < _nx; x++)
       {
                 unsigned int pos = base + x;
