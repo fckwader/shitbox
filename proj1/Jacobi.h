@@ -45,11 +45,11 @@ public:
 
     unsigned int ts = 32;
     unsigned int pos = 0;
-    #pragma omp parallel for collapse(2)
     for (unsigned int y = 0; y < _ny; y++)
     {
       for (unsigned int x = 0; x < _nx; x+=ts)
       {
+        #pragma omp unroll
         for(int tx = x; tx < x + ts && tx < _nx; tx++){
                 // do Jacobi update and write to writePtr
                 //printf("X%d Y%d P%d\n", tx, y, pos);
