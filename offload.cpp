@@ -4,7 +4,8 @@ int main(){
 
     #pragma omp target
     {
-        printf("hello\n");
+        int i = 0;
+        i += 1;
     }
 
 
