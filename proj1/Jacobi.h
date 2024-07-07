@@ -7,6 +7,7 @@
 
 #include "Definitions.h"
 #include <stdio.h>
+#include <time.h>
 
 void printField(const FLOAT *field, const int nx)
 {
@@ -31,6 +32,7 @@ public:
 
   void iterate(const FLOAT *const readField, FLOAT *const writeField, const FLOAT *const rhs) const
   {
+
     // set pointers of 5-point stencil (only neighbour values) to very first inner grid point
     const FLOAT *readPtr_S = readField + 1;
     const FLOAT *readPtr_W = readField + (_nx + 2);
@@ -42,26 +44,25 @@ public:
     FLOAT *writePtr = writeField + (_nx + 3);
 
     // use pos to advance access through the whole grid without any expensive index computations
+<<<<<<< HEAD
 
 
 
+=======
+    unsigned int pos = 0;
+    #pragma omp parallel for
+>>>>>>> 8fedeea946bf0c20e59f3202ad62dbbc72cb36b9
     for (unsigned int y = 0; y < _ny; y++)
     {
+      #pragma omp unroll
       for (unsigned int x = 0; x < _nx; x++)
       {
-        unsigned int pos = x + y * (_nx + 2);
-        // do Jacobi update and write to writePtr
-        writePtr[pos] = _RHS * rhsPtr[pos];
-        writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
-        writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
-        printf("p%d x%d y%d\n", pos, x, y);
-
-        // update pos along x-axis
-
+                unsigned int base = y * (_ny + 2);
+                unsigned int pos = base + x;
+                writePtr[pos] = _RHS * rhsPtr[pos];
+                writePtr[pos] += _X * (readPtr_W[pos] + readPtr_E[pos]);
+                writePtr[pos] += _Y * (readPtr_S[pos] + readPtr_N[pos]);
       }
-        printf("\n");
-      // update pos along y-axis; therefore just jump over the two boundary values
-
     }
   }
 

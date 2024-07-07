@@ -7,7 +7,7 @@
 
 #include "Multigrid.h"
 #include "ComputeError.h"
-#include <time.h>
+#include <chrono>
 
 
 
@@ -76,7 +76,8 @@ int main(int argc, char *argv[])
   ComputeError computeError(nx, nx);
   const VTKPlotter vtkPlotter;
 
-  clock_t start = clock();
+  auto t0 = std::chrono::high_resolution_clock::now();
+
   for (unsigned int i = 0; i < multigridCycles; i++)
   {
 
@@ -101,9 +102,15 @@ int main(int argc, char *argv[])
   // commented out: result not interesting here
   //computeError.plotPointwiseError();
   //vtkPlotter.writeFieldData(currentSolution,nx,nx,"result.vtk");
-  clock_t end = clock();
-  float seconds = (float)(end - start) / CLOCKS_PER_SEC;
-  printf("Whole thing took %.2f seconds\n", seconds);
+  auto t1 = std::chrono::high_resolution_clock::now();
+
+
+
+    using dsec = std::chrono::duration<double>;
+    double dur = std::chrono::duration_cast<dsec>(t1 - t0).count();
+
+    std::cout << "Time taken: " << dur << "s" << std::endl;
+
 
   return 0;
 }
