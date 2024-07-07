@@ -1,6 +1,12 @@
 #include <stdio.h>
 
 int main(){
-    printf("working\n");
+
+    #pragma omp target
+    {
+        printf("hello\n");
+    }
+
+
     return 0;
 }
