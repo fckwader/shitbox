@@ -48,7 +48,6 @@ public:
     #pragma omp parallel for
     for (unsigned int y = 0; y < _ny; y++)
     {
-      #pragma omp unroll
       for (unsigned int x = 0; x < _nx; x++)
       {
                 unsigned int base = y * (_ny + 2);

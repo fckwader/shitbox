@@ -1,3 +1,3 @@
 git add .
-git commit -m "YEAH"
+git commit -m "automated push"
 git push
