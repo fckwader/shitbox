@@ -44,8 +44,14 @@ public:
     FLOAT *writePtr = writeField + (_nx + 3);
 
     // use pos to advance access through the whole grid without any expensive index computations
+<<<<<<< HEAD
+
+
+
+=======
     unsigned int pos = 0;
     #pragma omp parallel for
+>>>>>>> 8fedeea946bf0c20e59f3202ad62dbbc72cb36b9
     for (unsigned int y = 0; y < _ny; y++)
     {
       for (unsigned int x = 0; x < _nx; x++)
